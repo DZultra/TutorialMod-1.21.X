@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod;
 
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
@@ -16,5 +17,6 @@ public class TutorialMod implements ModInitializer {
 	public void onInitialize() {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModItemGroups.registerItemGroups();
 	}
 }
