@@ -1,5 +1,6 @@
 package net.dzultra.tutorialmod.block;
 
+import net.dzultra.tutorialmod.block.custom.MagicBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.minecraft.block.AbstractBlock;
@@ -36,6 +37,9 @@ public class ModBlocks {
     public static final Block PINK_GARNET_DEEPSLATE_ORE = registerBlock("pink_garnet_deepslate_ore",
             new ExperienceDroppingBlock(UniformIntProvider.create(3, 6),
                     AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
+
+    public static final Block MAGIC_BLOCK = registerBlock("magic_block",
+            new MagicBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
 
     private static Block registerBlock(String name, Block block) {

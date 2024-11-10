@@ -43,6 +43,8 @@ public class ChiselItem extends Item {
 
                 world.playSound(null, context.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS);
             }
+        } else {
+            return ActionResult.FAIL;
         }
 
         return ActionResult.SUCCESS;
