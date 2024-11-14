@@ -19,6 +19,9 @@ public class LevitationBlock extends Block {
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (entity instanceof LivingEntity livingEntity) {
             if (world.isReceivingRedstonePower(pos)) {
+                if (world.isReceivingRedstonePower(pos)) {
+                    livingEntity.addStatusEffect(new StatusEffectInstance(StatusEffects.LEVITATION, 100, 2)); // Effect Level is calculated by "Amplifier + 1"
+                }
             }
         }
 
