@@ -1,5 +1,7 @@
 package net.dzultra.tutorialmod.block;
 
+import net.dzultra.tutorialmod.block.custom.KaboomBlock;
+import net.dzultra.tutorialmod.block.custom.LaunchBlock;
 import net.dzultra.tutorialmod.block.custom.LevitationBlock;
 import net.dzultra.tutorialmod.block.custom.MagicBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -66,7 +68,11 @@ public class ModBlocks {
     public static final Block PINK_GARNET_TRAPDOOR = registerBlock("pink_garnet_trapdoor",
             new TrapdoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
+    public static final Block KABOOM_BLOCK = registerBlock("kaboom_block",
+            new KaboomBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
+    public static final Block LAUNCH_BLOCK = registerBlock("launch_block",
+            new LaunchBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

@@ -44,6 +44,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PINK_GARNET_DOOR);
                         entries.add(ModBlocks.PINK_GARNET_TRAPDOOR);
                         entries.add(ModBlocks.LEVITATION_BLOCK);
+                        entries.add(ModBlocks.KABOOM_BLOCK);
+                        entries.add(ModBlocks.LAUNCH_BLOCK);
                     }).build());
 
 

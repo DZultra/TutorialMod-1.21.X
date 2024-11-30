@@ -21,7 +21,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.PINK_GARNET_ORE)
                 .add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE)
                 .add(ModBlocks.MAGIC_BLOCK)
-                .add(ModBlocks.LEVITATION_BLOCK);
+                .add(ModBlocks.KABOOM_BLOCK)
+                .add(ModBlocks.LEVITATION_BLOCK)
+                .add(ModBlocks.LAUNCH_BLOCK);
+
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
