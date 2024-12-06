@@ -3,6 +3,7 @@ package net.dzultra.tutorialmod.item;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.item.custom.ChiselItem;
 import net.dzultra.tutorialmod.item.custom.HoneyJarItem;
+import net.dzultra.tutorialmod.item.custom.LauncherStaffItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
@@ -30,6 +31,7 @@ public class ModItems {
 
     public static final Item STARLIGHT_ASHES = registerItem("starlight_ashes", new Item(new Item.Settings()));
 
+    public static final Item LAUNCHER_STAFF = registerItem("launcher_staff", new LauncherStaffItem(new Item.Settings()));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(TutorialMod.MOD_ID, name), item);

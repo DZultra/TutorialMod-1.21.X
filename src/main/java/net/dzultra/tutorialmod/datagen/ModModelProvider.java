@@ -49,5 +49,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.STARLIGHT_ASHES, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.HONEY_JAR, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.LAUNCHER_STAFF, Models.GENERATED);
     }
 }
