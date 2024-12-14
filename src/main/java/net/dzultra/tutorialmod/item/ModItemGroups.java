@@ -48,6 +48,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.LEVITATION_BLOCK);
                         entries.add(ModBlocks.KABOOM_BLOCK);
                         entries.add(ModBlocks.LAUNCH_BLOCK);
+                        entries.add(ModBlocks.PILLAR_CREATOR_BLOCK);
                     }).build());
 
 

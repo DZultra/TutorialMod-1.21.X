@@ -1,9 +1,6 @@
 package net.dzultra.tutorialmod.block;
 
-import net.dzultra.tutorialmod.block.custom.KaboomBlock;
-import net.dzultra.tutorialmod.block.custom.LaunchBlock;
-import net.dzultra.tutorialmod.block.custom.LevitationBlock;
-import net.dzultra.tutorialmod.block.custom.MagicBlock;
+import net.dzultra.tutorialmod.block.custom.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.minecraft.block.*;
@@ -73,6 +70,9 @@ public class ModBlocks {
 
     public static final Block LAUNCH_BLOCK = registerBlock("launch_block",
             new LaunchBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
+
+    public static final Block PILLAR_CREATOR_BLOCK = registerBlock("pillar_creator_block",
+            new PillarCreatorBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

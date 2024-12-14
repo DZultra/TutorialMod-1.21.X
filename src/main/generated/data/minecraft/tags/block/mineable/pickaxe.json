@@ -7,6 +7,7 @@
     "tutorialmod:magic_block",
     "tutorialmod:kaboom_block",
     "tutorialmod:levitation_block",
-    "tutorialmod:launch_block"
+    "tutorialmod:launch_block",
+    "tutorialmod:pillar_creator_block"
   ]
 }

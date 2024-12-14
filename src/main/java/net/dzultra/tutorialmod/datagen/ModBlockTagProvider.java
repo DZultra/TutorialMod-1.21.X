@@ -23,7 +23,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.MAGIC_BLOCK)
                 .add(ModBlocks.KABOOM_BLOCK)
                 .add(ModBlocks.LEVITATION_BLOCK)
-                .add(ModBlocks.LAUNCH_BLOCK);
+                .add(ModBlocks.LAUNCH_BLOCK)
+                .add(ModBlocks.PILLAR_CREATOR_BLOCK);
 
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
