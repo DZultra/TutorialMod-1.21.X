@@ -6,6 +6,7 @@
   "item.tutorialmod.honey_jar": "Honey Jar",
   "item.tutorialmod.starlight_ashes": "Starlight Ashes",
   "item.tutorialmod.launcher_staff": "Launcher Staff",
+  "item.tutorialmod.blockup_mover": "BlockUp Mover",
 
   "tooltip.tutorialmod.magic_block.tooltip": "§9Don't§r step on me!",
   "tooltip.tutorialmod.chisel.shift_down": "This item chisels blocks into bricks!",

@@ -7,6 +7,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -41,7 +42,12 @@ public class MagicBlock extends Block {
                 itemEntity.setStack(new ItemStack(Items.DIAMOND, itemEntity.getStack().getCount()));
             }
         } else if (entity instanceof LivingEntity livingEntity) {
-            livingEntity.damage(world.getDamageSources().generic(),1);
+            if (world.isReceivingRedstonePower(pos)) {
+                livingEntity.getAttributeInstance(EntityAttributes.GENERIC_JUMP_STRENGTH).setBaseValue(1);
+            } else {
+                livingEntity.damage(world.getDamageSources().generic(),1);
+                livingEntity.getAttributeInstance(EntityAttributes.GENERIC_JUMP_STRENGTH).setBaseValue(0.41999998688697815);
+            }
         }
 
         super.onSteppedOn(world, pos, state, entity);

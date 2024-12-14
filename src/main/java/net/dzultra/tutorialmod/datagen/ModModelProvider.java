@@ -51,5 +51,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.HONEY_JAR, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.LAUNCHER_STAFF, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BLOCKUP_MOVER, Models.GENERATED);
     }
 }

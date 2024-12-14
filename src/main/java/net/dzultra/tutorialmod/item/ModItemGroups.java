@@ -23,6 +23,7 @@ public class ModItemGroups {
                         entries.add(ModItems.HONEY_JAR);
                         entries.add(ModItems.STARLIGHT_ASHES);
                         entries.add(ModItems.LAUNCHER_STAFF);
+                        entries.add(ModItems.BLOCKUP_MOVER);
                     }).build());
 
     public static final ItemGroup PINK_GARNET_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,
