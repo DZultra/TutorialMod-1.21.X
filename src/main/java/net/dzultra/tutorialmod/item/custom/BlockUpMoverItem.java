@@ -20,7 +20,7 @@ public class BlockUpMoverItem extends Item {
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
 
-        if (!world.isClient && blockState.isOf(Blocks.DIAMOND_BLOCK)) {
+        if (!world.isClient) {
             BlockPos newBlockPos;
 
             if (world.isReceivingRedstonePower(blockPos)) {
