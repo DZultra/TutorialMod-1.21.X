@@ -38,9 +38,6 @@ public class ModBlocks {
 
     public static final Block MAGIC_BLOCK = registerBlock("magic_block",
             new MagicBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
-    public static final Block LEVITATION_BLOCK = registerBlock("levitation_block",
-            new LevitationBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
-
 
     public static final Block PINK_GARNET_STAIRS = registerBlock("pink_garnet_stairs",
             new StairsBlock(ModBlocks.PINK_GARNET_BLOCK.getDefaultState(),
@@ -65,6 +62,12 @@ public class ModBlocks {
     public static final Block PINK_GARNET_TRAPDOOR = registerBlock("pink_garnet_trapdoor",
             new TrapdoorBlock(BlockSetType.IRON, AbstractBlock.Settings.create().strength(2f).requiresTool().nonOpaque()));
 
+    public static final Block PINK_GARNET_LAMP =  registerBlock("pink_garnet_lamp",
+            new PinkGarnetLampBlock(AbstractBlock.Settings.create()
+                    .strength(1f).requiresTool().luminance(state -> state.get(PinkGarnetLampBlock.LIT) ? 15 : 0)));
+
+    // Everything below is self-made
+
     public static final Block KABOOM_BLOCK = registerBlock("kaboom_block",
             new KaboomBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
@@ -73,6 +76,9 @@ public class ModBlocks {
 
     public static final Block PILLAR_CREATOR_BLOCK = registerBlock("pillar_creator_block",
             new PillarCreatorBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
+
+    public static final Block LEVITATION_BLOCK = registerBlock("levitation_block",
+            new LevitationBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
