@@ -80,6 +80,9 @@ public class ModBlocks {
     public static final Block LEVITATION_BLOCK = registerBlock("levitation_block",
             new LevitationBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
 
+    public static final Block ON_STEP_SPAWNER_BLOCK = registerBlock("on_step_spawner_block",
+            new OnStepSpawnerBlock(AbstractBlock.Settings.create().strength(5f)));
+
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);
         return Registry.register(Registries.BLOCK, Identifier.of(TutorialMod.MOD_ID, name), block);

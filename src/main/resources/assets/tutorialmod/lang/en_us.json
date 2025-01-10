@@ -33,6 +33,7 @@
   "block.tutorialmod.launch_block": "Launch Block",
   "block.tutorialmod.pillar_creator_block": "Pillar Creator Block",
   "block.tutorialmod.pink_garnet_lamp": "Pink Garnet Lamp",
+  "block.tutorialmod.on_step_spawner_block": "On Step Spawner",
 
   "itemgroup.tutorialmod.pink_garnet_items": "Pink Garnet Items",
   "itemgroup.tutorialmod.pink_garnet_blocks": "Pink Garnet Blocks"
