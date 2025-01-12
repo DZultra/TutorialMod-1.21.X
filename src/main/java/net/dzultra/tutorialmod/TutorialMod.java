@@ -3,8 +3,10 @@ package net.dzultra.tutorialmod;
 import net.dzultra.tutorialmod.block.ModBlocks;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
+import net.dzultra.tutorialmod.util.HammerUsageEvent;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,5 +23,7 @@ public class TutorialMod implements ModInitializer {
 		ModItemGroups.registerItemGroups();
 
 		FuelRegistry.INSTANCE.add(ModItems.STARLIGHT_ASHES, 600);
+
+		PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
 	}
 }

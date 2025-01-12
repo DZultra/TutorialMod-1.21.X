@@ -1,10 +1,7 @@
 package net.dzultra.tutorialmod.item;
 
 import net.dzultra.tutorialmod.TutorialMod;
-import net.dzultra.tutorialmod.item.custom.BlockUpMoverItem;
-import net.dzultra.tutorialmod.item.custom.ChiselItem;
-import net.dzultra.tutorialmod.item.custom.HoneyJarItem;
-import net.dzultra.tutorialmod.item.custom.LauncherStaffItem;
+import net.dzultra.tutorialmod.item.custom.*;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
@@ -46,6 +43,10 @@ public class ModItems {
     public static final Item PINK_GARNET_HOE = registerItem("pink_garnet_hoe",
             new HoeItem(ModToolMaterials.PINK_GARNET, new Item.Settings()
                     .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.PINK_GARNET, 0, -3f))));
+    public static final Item PINK_GARNET_HAMMER = registerItem("pink_garnet_hammer",
+            new HammerItem(ModToolMaterials.PINK_GARNET, new Item.Settings()
+                    .attributeModifiers(PickaxeItem.createAttributeModifiers(ModToolMaterials.PINK_GARNET, 7, -3.4f))));
+
 
     public static final Item LAUNCHER_STAFF = registerItem("launcher_staff", new LauncherStaffItem(new Item.Settings()));
 
