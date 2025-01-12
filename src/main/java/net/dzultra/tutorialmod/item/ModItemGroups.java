@@ -22,6 +22,11 @@ public class ModItemGroups {
                         entries.add(ModItems.CAULIFLOWER);
                         entries.add(ModItems.HONEY_JAR);
                         entries.add(ModItems.STARLIGHT_ASHES);
+                        entries.add(ModItems.PINK_GARNET_SWORD);
+                        entries.add(ModItems.PINK_GARNET_PICKAXE);
+                        entries.add(ModItems.PINK_GARNET_SHOVEL);
+                        entries.add(ModItems.PINK_GARNET_AXE);
+                        entries.add(ModItems.PINK_GARNET_HOE);
                         entries.add(ModItems.LAUNCHER_STAFF);
                         entries.add(ModItems.BLOCKUP_MOVER);
                     }).build());

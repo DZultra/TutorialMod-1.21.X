@@ -7,6 +7,12 @@
   "item.tutorialmod.starlight_ashes": "Starlight Ashes",
   "item.tutorialmod.launcher_staff": "Launcher Staff",
   "item.tutorialmod.blockup_mover": "BlockUp Mover",
+  "item.tutorialmod.pink_garnet_sword": "Pink Garnet Sword",
+  "item.tutorialmod.pink_garnet_pickaxe": "Pink Garnet Pickaxe",
+  "item.tutorialmod.pink_garnet_shovel": "Pink Garnet Shovel",
+  "item.tutorialmod.pink_garnet_axe": "Pink Garnet Axe",
+  "item.tutorialmod.pink_garnet_hoe": "Pink Garnet Hoe",
+
 
   "tooltip.tutorialmod.magic_block.tooltip": "§9Don't§r step on me!",
   "tooltip.tutorialmod.chisel.shift_down": "This item chisels blocks into bricks!",
