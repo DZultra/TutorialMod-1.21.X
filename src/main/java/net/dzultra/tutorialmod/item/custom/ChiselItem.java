@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod.item.custom;
 
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
@@ -15,6 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -42,6 +44,9 @@ public class ChiselItem extends Item {
         if(CHISEL_MAP.containsKey(clickedBlock)) {
             if(!world.isClient()) {
                 world.setBlockState(context.getBlockPos(), CHISEL_MAP.get(clickedBlock).getDefaultState());
+
+                //var slot = context.getHand() == Hand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+                //context.getStack().damage(1, context.getPlayer(),slot);
 
                 context.getStack().damage(1, ((ServerWorld) world), ((ServerPlayerEntity) context.getPlayer()),
                         item -> context.getPlayer().sendEquipmentBreakStatus(item, EquipmentSlot.MAINHAND));
