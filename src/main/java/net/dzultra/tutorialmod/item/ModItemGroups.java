@@ -57,6 +57,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PILLAR_CREATOR_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_LAMP);
                         entries.add(ModBlocks.ON_STEP_SPAWNER_BLOCK);
+                        entries.add(ModBlocks.TARGETER_BLOCK);
+                        entries.add(ModBlocks.ON_SHOOT_DELETE_BLOCK);
 
                     }).build());
 

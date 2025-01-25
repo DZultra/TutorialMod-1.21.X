@@ -8,6 +8,8 @@
     "tutorialmod:kaboom_block",
     "tutorialmod:levitation_block",
     "tutorialmod:launch_block",
-    "tutorialmod:pillar_creator_block"
+    "tutorialmod:pillar_creator_block",
+    "tutorialmod:on_shoot_delete_block",
+    "tutorialmod:on_step_spawner_block"
   ]
 }

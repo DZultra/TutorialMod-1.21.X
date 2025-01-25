@@ -1,8 +1,8 @@
-// 1.21	2025-01-12T20:50:39.127891	Tutorial Mod/Tags for minecraft:block
-f30a6367dbc22bbef01d6bf2a992f645005f83b5 data\minecraft\tags\block\needs_diamond_tool.json
-87c23b954c6a1061edf28d30d87d40ccfecb8a8f data\minecraft\tags\block\fences.json
+// 1.21	2025-01-25T15:34:14.6454014	Tutorial Mod/Tags for minecraft:block
+ac949b956c63d225f075b7e26b834e3a7f214cb3 data\minecraft\tags\block\mineable\pickaxe.json
 c07c4c3be2f1e2228e70cca883d68ce9bd7ba47e data\tutorialmod\tags\block\needs_pink_garnet_tool.json
-6e20b69a9d2f5656b1009614747a8e826f937071 data\minecraft\tags\block\walls.json
 8159fdbcb7619cbd57674525489b6dfed8a407fd data\minecraft\tags\block\fence_gates.json
+f30a6367dbc22bbef01d6bf2a992f645005f83b5 data\minecraft\tags\block\needs_diamond_tool.json
+6e20b69a9d2f5656b1009614747a8e826f937071 data\minecraft\tags\block\walls.json
 079e21ee82e19be3b06c0ad61d06e9bdce588108 data\minecraft\tags\block\needs_iron_tool.json
-5059bae9c29bba3a1136b6adb84c752dcf943283 data\minecraft\tags\block\mineable\pickaxe.json
+87c23b954c6a1061edf28d30d87d40ccfecb8a8f data\minecraft\tags\block\fences.json
