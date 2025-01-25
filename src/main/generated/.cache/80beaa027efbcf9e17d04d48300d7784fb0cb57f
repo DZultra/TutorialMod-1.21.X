@@ -1,5 +1,5 @@
-// 1.21	2025-01-25T15:34:14.6454014	Tutorial Mod/Tags for minecraft:block
-ac949b956c63d225f075b7e26b834e3a7f214cb3 data\minecraft\tags\block\mineable\pickaxe.json
+// 1.21	2025-01-25T16:12:38.862957	Tutorial Mod/Tags for minecraft:block
+e295880a7867746b342c53ad74a2a14d0d0ef82d data\minecraft\tags\block\mineable\pickaxe.json
 c07c4c3be2f1e2228e70cca883d68ce9bd7ba47e data\tutorialmod\tags\block\needs_pink_garnet_tool.json
 8159fdbcb7619cbd57674525489b6dfed8a407fd data\minecraft\tags\block\fence_gates.json
 f30a6367dbc22bbef01d6bf2a992f645005f83b5 data\minecraft\tags\block\needs_diamond_tool.json
