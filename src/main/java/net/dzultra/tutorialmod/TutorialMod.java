@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod;
 
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.dzultra.tutorialmod.component.ModDataComponentTypes;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.util.HammerUsageEvent;
@@ -21,6 +22,7 @@ public class TutorialMod implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModItemGroups.registerItemGroups();
+		ModDataComponentTypes.registerDataComponentTypes();
 
 		FuelRegistry.INSTANCE.add(ModItems.STARLIGHT_ASHES, 600);
 

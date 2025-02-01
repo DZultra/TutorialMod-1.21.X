@@ -1,7 +1,7 @@
 package net.dzultra.tutorialmod.item.custom;
 
 import net.dzultra.tutorialmod.block.ModBlocks;
-import net.fabricmc.fabric.api.item.v1.CustomDamageHandler;
+import net.dzultra.tutorialmod.component.ModDataComponentTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.gui.screen.Screen;
@@ -16,7 +16,6 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -52,6 +51,8 @@ public class ChiselItem extends Item {
                         item -> context.getPlayer().sendEquipmentBreakStatus(item, EquipmentSlot.MAINHAND));
 
                 world.playSound(null, context.getBlockPos(), SoundEvents.BLOCK_GRINDSTONE_USE, SoundCategory.BLOCKS);
+
+                context.getStack().set(ModDataComponentTypes.COORDINATES, context.getBlockPos());
             }
         } else {
             return ActionResult.FAIL;
@@ -66,6 +67,10 @@ public class ChiselItem extends Item {
             tooltip.add(Text.translatable("tooltip.tutorialmod.chisel.shift_down"));
         } else {
             tooltip.add(Text.translatable("tooltip.tutorialmod.chisel"));
+        }
+
+        if(stack.get(ModDataComponentTypes.COORDINATES) != null) {
+            tooltip.add(Text.translatable("tooltip.tutorialmod.chisel.component.coordinates").append(Text.literal(stack.get(ModDataComponentTypes.COORDINATES).toString())));
         }
 
         super.appendTooltip(stack, context, tooltip, type);

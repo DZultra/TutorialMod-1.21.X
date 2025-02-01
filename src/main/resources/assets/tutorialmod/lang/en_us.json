@@ -22,8 +22,10 @@
   "tooltip.tutorialmod.magic_block.tooltip": "§9Don't§r step on me!",
   "tooltip.tutorialmod.chisel.shift_down": "This item chisels blocks into bricks!",
   "tooltip.tutorialmod.chisel": "Press §eShift§r for more info",
+  "tooltip.tutorialmod.chisel.component.coordinates": "Last Block changed at ",
   "tooltip.tutorialmod.cauliflower": "Eat me!",
   "tooltip.tutorialmod.launcher_staff": "Don't try me on an Iron Golem!",
+
 
   "block.tutorialmod.pink_garnet_block": "Block of Pink Garnet",
   "block.tutorialmod.raw_pink_garnet_block": "Block of Raw Pink Garnet",
