@@ -34,6 +34,7 @@ public class ModItemGroups {
                         entries.add(ModItems.PINK_GARNET_BOOTS);
                         entries.add(ModItems.PINK_GARNET_HORSE_ARMOR);
                         entries.add(ModItems.KAUPEN_SMITHING_TEMPLATE);
+                        entries.add(ModItems.KAUPEN_BOW);
                         entries.add(ModItems.LAUNCHER_STAFF);
                         entries.add(ModItems.BLOCKUP_MOVER);
                     }).build());
