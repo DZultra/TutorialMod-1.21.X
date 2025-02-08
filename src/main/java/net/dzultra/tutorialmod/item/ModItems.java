@@ -6,8 +6,10 @@ import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 import java.util.List;
 
@@ -24,7 +26,10 @@ public class ModItems {
         }
     });
 
-    public static final Item HONEY_JAR = registerItem("honey_jar", new HoneyJarItem(new Item.Settings().food(ModFoodComponents.HONEY_JAR)));
+    public static final Item HONEY_JAR = registerItem("honey_jar", new HoneyJarItem(new Item.Settings()
+            .food(ModFoodComponents.HONEY_JAR)
+            .rarity(Rarity.UNCOMMON)
+    ));
 
     public static final Item STARLIGHT_ASHES = registerItem("starlight_ashes", new Item(new Item.Settings()));
 
@@ -62,6 +67,9 @@ public class ModItems {
 
     public static final Item PINK_GARNET_HORSE_ARMOR = registerItem("pink_garnet_horse_armor",
             new AnimalArmorItem(ModArmorMaterials.PINK_GARNET_ARMOR_MATERIAL, AnimalArmorItem.Type.EQUESTRIAN, false, new Item.Settings().maxCount(1)));
+
+    public static final Item KAUPEN_SMITHING_TEMPLATE = registerItem("kaupen_armor_trim_smithing_template",
+            SmithingTemplateItem.of(Identifier.of(TutorialMod.MOD_ID, "kaupen"), FeatureFlags.VANILLA));
 
     public static final Item LAUNCHER_STAFF = registerItem("launcher_staff", new LauncherStaffItem(new Item.Settings()));
 

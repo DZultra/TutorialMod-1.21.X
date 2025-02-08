@@ -18,11 +18,12 @@
   "item.tutorialmod.pink_garnet_leggings": "Pink Garnet Leggings",
   "item.tutorialmod.pink_garnet_boots": "Pink Garnet Boots",
   "item.tutorialmod.pink_garnet_horse_armor": "Pink Garnet Horse Armor",
+  "item.tutorialmod.kaupen_armor_trim_smithing_template": "Kaupen Smithing Template",
 
   "tooltip.tutorialmod.magic_block.tooltip": "§9Don't§r step on me!",
   "tooltip.tutorialmod.chisel.shift_down": "This item chisels blocks into bricks!",
   "tooltip.tutorialmod.chisel": "Press §eShift§r for more info",
-  "tooltip.tutorialmod.chisel.component.coordinates": "Last Block changed at ",
+  "tooltip.tutorialmod.chisel.component.coordinates": "Last Block changed at",
   "tooltip.tutorialmod.cauliflower": "Eat me!",
   "tooltip.tutorialmod.launcher_staff": "Don't try me on an Iron Golem!",
 
@@ -50,5 +51,8 @@
   "block.tutorialmod.on_shoot_delete_block": "Target 2.0",
 
   "itemgroup.tutorialmod.pink_garnet_items": "Pink Garnet Items",
-  "itemgroup.tutorialmod.pink_garnet_blocks": "Pink Garnet Blocks"
+  "itemgroup.tutorialmod.pink_garnet_blocks": "Pink Garnet Blocks",
+
+  "trim_material.tutorialmod.pink_garnet": "Pink Garnet Material",
+  "trim_pattern.tutorialmod.kaupen": "Kaupen Armor Pattern"
 }

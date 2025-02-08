@@ -16,6 +16,7 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -55,6 +56,7 @@ public class ChiselItem extends Item {
                 context.getStack().set(ModDataComponentTypes.COORDINATES, context.getBlockPos());
             }
         } else {
+            context.getStack().set(ModDataComponentTypes.COORDINATES, null);
             return ActionResult.FAIL;
         }
 
@@ -69,8 +71,17 @@ public class ChiselItem extends Item {
             tooltip.add(Text.translatable("tooltip.tutorialmod.chisel"));
         }
 
+        BlockPos coordinates = stack.get(ModDataComponentTypes.COORDINATES);
+
         if(stack.get(ModDataComponentTypes.COORDINATES) != null) {
-            tooltip.add(Text.translatable("tooltip.tutorialmod.chisel.component.coordinates").append(Text.literal(stack.get(ModDataComponentTypes.COORDINATES).toString())));
+            tooltip.add(Text.translatable("tooltip.tutorialmod.chisel.component.coordinates")
+                    .append(Text.literal(" X: "))
+                    .append(Text.literal(String.valueOf(coordinates.getX())))
+                    .append(Text.literal(" Y: "))
+                    .append(Text.literal(String.valueOf(coordinates.getY())))
+                    .append(Text.literal(" Z: "))
+                    .append(Text.literal(String.valueOf(coordinates.getZ())))
+            );
         }
 
         super.appendTooltip(stack, context, tooltip, type);
