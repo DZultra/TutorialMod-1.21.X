@@ -2,6 +2,7 @@ package net.dzultra.tutorialmod.item;
 
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.item.custom.*;
+import net.dzultra.tutorialmod.sound.ModSounds;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
@@ -73,6 +74,11 @@ public class ModItems {
 
     public static final Item KAUPEN_BOW = registerItem("kaupen_bow",
             new BowItem(new Item.Settings().maxDamage(500)));
+
+    public static final Item BAR_BRAWL_MUSIC_DISC = registerItem("bar_brawl_music_disc",
+            new Item(new Item.Settings().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).maxCount(1)));
+
+    // Everything below this is made myself
 
     public static final Item LAUNCHER_STAFF = registerItem("launcher_staff", new LauncherStaffItem(new Item.Settings()));
 

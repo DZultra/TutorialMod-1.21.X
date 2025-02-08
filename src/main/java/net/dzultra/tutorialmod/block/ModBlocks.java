@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod.block;
 
 import net.dzultra.tutorialmod.block.custom.*;
+import net.dzultra.tutorialmod.sound.ModSounds;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.minecraft.block.*;
@@ -15,17 +16,10 @@ import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class ModBlocks {
     public static final Block PINK_GARNET_BLOCK = registerBlock("pink_garnet_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(4f)
-                    .requiresTool()
-                    .sounds(BlockSoundGroup.AMETHYST_BLOCK)
-            ));
+            new Block(AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.AMETHYST_BLOCK)));
 
     public static final Block RAW_PINK_GARNET_BLOCK = registerBlock("raw_pink_garnet_block",
-            new Block(AbstractBlock.Settings.create()
-                    .strength(3f)
-                    .requiresTool()
-            ));
+            new Block(AbstractBlock.Settings.create().strength(3f).requiresTool()));
 
 
     public static final Block PINK_GARNET_ORE = registerBlock("pink_garnet_ore",
@@ -37,7 +31,11 @@ public class ModBlocks {
                     AbstractBlock.Settings.create().strength(4f).requiresTool().sounds(BlockSoundGroup.DEEPSLATE)));
 
     public static final Block MAGIC_BLOCK = registerBlock("magic_block",
-            new MagicBlock(AbstractBlock.Settings.create().strength(1f).requiresTool()));
+            new MagicBlock(AbstractBlock.Settings.create()
+                    .strength(1f)
+                    .requiresTool()
+                    .sounds(ModSounds.MAGIC_BLOCK_SOUNDS)
+            ));
 
     public static final Block PINK_GARNET_STAIRS = registerBlock("pink_garnet_stairs",
             new StairsBlock(ModBlocks.PINK_GARNET_BLOCK.getDefaultState(),
