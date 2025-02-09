@@ -23,6 +23,14 @@
   "item.tutorialmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
   "item.tutorialmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)",
 
+  "item.minecraft.potion.effect.slimey_potion": "Potion of Slimey",
+  "item.minecraft.splash_potion.effect.slimey_potion": "Splash Potion of Slimey",
+  "item.minecraft.lingering_potion.effect.slimey_potion": "Lingering Potion of Slimey",
+
+  "item.minecraft.potion.effect.long_slimey_potion": "Potion of Slimey",
+  "item.minecraft.splash_potion.effect.long_slimey_potion": "Splash Potion of Slimey",
+  "item.minecraft.lingering_potion.effect.long_slimey_potion": "Lingering Potion of Slimey",
+
   "tooltip.tutorialmod.magic_block.tooltip": "§9Don't§r step on me!",
   "tooltip.tutorialmod.chisel.shift_down": "This item chisels blocks into bricks!",
   "tooltip.tutorialmod.chisel": "Press §eShift§r for more info",

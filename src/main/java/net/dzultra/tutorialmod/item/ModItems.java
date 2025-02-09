@@ -3,6 +3,7 @@ package net.dzultra.tutorialmod.item;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.item.custom.*;
 import net.dzultra.tutorialmod.sound.ModSounds;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.*;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
@@ -89,6 +90,7 @@ public class ModItems {
     }
 
     public static void registerModItems() {
+        FuelRegistry.INSTANCE.add(ModItems.STARLIGHT_ASHES, 600);
         TutorialMod.LOGGER.info("Registering Mod Items for " + TutorialMod.MOD_ID);
     }
 }

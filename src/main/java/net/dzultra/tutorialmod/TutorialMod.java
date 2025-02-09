@@ -5,14 +5,11 @@ import net.dzultra.tutorialmod.component.ModDataComponentTypes;
 import net.dzultra.tutorialmod.effect.ModEffects;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
+import net.dzultra.tutorialmod.potion.ModPotions;
 import net.dzultra.tutorialmod.sound.ModSounds;
-import net.dzultra.tutorialmod.util.HammerUsageEvent;
-import net.dzultra.tutorialmod.util.SheepHitEvent;
+import net.dzultra.tutorialmod.util.ModEvents;
 import net.fabricmc.api.ModInitializer;
 
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,11 +26,7 @@ public class TutorialMod implements ModInitializer {
 		ModDataComponentTypes.registerDataComponentTypes();
 		ModSounds.registerSounds();
 		ModEffects.registerEffects();
-
-		FuelRegistry.INSTANCE.add(ModItems.STARLIGHT_ASHES, 600);
-
-		PlayerBlockBreakEvents.BEFORE.register(new HammerUsageEvent());
-
-		AttackEntityCallback.EVENT.register(new SheepHitEvent());
+		ModPotions.registerPotions();
+		ModEvents.registerEvents();
 	}
 }
