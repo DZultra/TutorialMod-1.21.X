@@ -3,6 +3,7 @@ package net.dzultra.tutorialmod;
 import net.dzultra.tutorialmod.block.ModBlocks;
 import net.dzultra.tutorialmod.component.ModDataComponentTypes;
 import net.dzultra.tutorialmod.effect.ModEffects;
+import net.dzultra.tutorialmod.enchantment.ModEnchantmentEffects;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.potion.ModPotions;
@@ -28,5 +29,6 @@ public class TutorialMod implements ModInitializer {
 		ModEffects.registerEffects();
 		ModPotions.registerPotions();
 		ModEvents.registerEvents();
+		ModEnchantmentEffects.registerEnchantmentEffects();
 	}
 }
