@@ -29,11 +29,6 @@ public class ModItems {
         }
     });
 
-    public static final Item HONEY_JAR = registerItem("honey_jar", new HoneyJarItem(new Item.Settings()
-            .food(ModFoodComponents.HONEY_JAR)
-            .rarity(Rarity.UNCOMMON)
-    ));
-
     public static final Item STARLIGHT_ASHES = registerItem("starlight_ashes", new Item(new Item.Settings()));
 
     public static final Item PINK_GARNET_SWORD = registerItem("pink_garnet_sword",
@@ -83,7 +78,15 @@ public class ModItems {
     public static final Item CAULIFLOWER_SEEDS = registerItem("cauliflower_seeds",
             new AliasedBlockItem(ModBlocks.CAULIFLOWER_CROP, new Item.Settings()));
 
+    public static final Item HONEY_BERRIES = registerItem("honey_berries",
+            new AliasedBlockItem(ModBlocks.HONEY_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.HONEY_BERRIES)));
+
     // Everything below this is made myself
+
+    public static final Item HONEY_JAR = registerItem("honey_jar", new HoneyJarItem(new Item.Settings()
+            .food(ModFoodComponents.HONEY_JAR)
+            .rarity(Rarity.UNCOMMON)
+    ));
 
     public static final Item LAUNCHER_STAFF = registerItem("launcher_staff", new LauncherStaffItem(new Item.Settings()));
 

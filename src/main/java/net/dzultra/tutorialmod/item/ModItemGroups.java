@@ -40,6 +40,7 @@ public class ModItemGroups {
                         entries.add(ModItems.KAUPEN_BOW);
                         entries.add(ModItems.BAR_BRAWL_MUSIC_DISC);
                         entries.add(ModItems.CAULIFLOWER_SEEDS);
+                        entries.add(ModItems.HONEY_BERRIES);
                         entries.add(ModItems.LAUNCHER_STAFF);
                         entries.add(ModItems.BLOCKUP_MOVER);
                     }).build());
