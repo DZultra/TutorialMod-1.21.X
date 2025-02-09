@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 public record LightningStrikerEnchantmentEffect() implements EnchantmentEntityEffect {
@@ -15,14 +14,13 @@ public record LightningStrikerEnchantmentEffect() implements EnchantmentEntityEf
 
     @Override
     public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
-        BlockPos enemyPos = new BlockPos((int) pos.x, (int) pos.y, (int) pos.z);
         if(level == 1) {
-            EntityType.LIGHTNING_BOLT.spawn(world, enemyPos, SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
         }
 
         if(level == 2) {
-            EntityType.LIGHTNING_BOLT.spawn(world, enemyPos, SpawnReason.TRIGGERED);
-            EntityType.LIGHTNING_BOLT.spawn(world, enemyPos, SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
+            EntityType.LIGHTNING_BOLT.spawn(world, user.getBlockPos(), SpawnReason.TRIGGERED);
         }
     }
 

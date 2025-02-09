@@ -22,6 +22,7 @@
   "item.tutorialmod.kaupen_bow": "Kaupen Bow",
   "item.tutorialmod.bar_brawl_music_disc": "Bar Brawl Music Disc",
   "item.tutorialmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)",
+  "item.tutorialmod.cauliflower_seeds": "Cauliflower Seeds",
 
   "item.minecraft.potion.effect.slimey_potion": "Potion of Slimey",
   "item.minecraft.splash_potion.effect.slimey_potion": "Splash Potion of Slimey",
@@ -59,6 +60,7 @@
   "block.tutorialmod.pink_garnet_lamp": "Pink Garnet Lamp",
   "block.tutorialmod.on_step_spawner_block": "On Step Spawner",
   "block.tutorialmod.on_shoot_delete_block": "Target 2.0",
+  "block.tutorialmod.caultflower_crop": "Cauliflower Crop",
 
   "itemgroup.tutorialmod.pink_garnet_items": "Pink Garnet Items",
   "itemgroup.tutorialmod.pink_garnet_blocks": "Pink Garnet Blocks",

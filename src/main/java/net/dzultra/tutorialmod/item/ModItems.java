@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod.item;
 
 import net.dzultra.tutorialmod.TutorialMod;
+import net.dzultra.tutorialmod.block.ModBlocks;
 import net.dzultra.tutorialmod.item.custom.*;
 import net.dzultra.tutorialmod.sound.ModSounds;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -78,6 +79,9 @@ public class ModItems {
 
     public static final Item BAR_BRAWL_MUSIC_DISC = registerItem("bar_brawl_music_disc",
             new Item(new Item.Settings().jukeboxPlayable(ModSounds.BAR_BRAWL_KEY).maxCount(1)));
+
+    public static final Item CAULIFLOWER_SEEDS = registerItem("cauliflower_seeds",
+            new AliasedBlockItem(ModBlocks.CAULIFLOWER_CROP, new Item.Settings()));
 
     // Everything below this is made myself
 

@@ -1,8 +1,11 @@
 package net.dzultra.tutorialmod.item;
 
+import net.dzultra.tutorialmod.enchantment.ModEnchantments;
+import net.dzultra.tutorialmod.potion.ModPotions;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -36,6 +39,7 @@ public class ModItemGroups {
                         entries.add(ModItems.KAUPEN_SMITHING_TEMPLATE);
                         entries.add(ModItems.KAUPEN_BOW);
                         entries.add(ModItems.BAR_BRAWL_MUSIC_DISC);
+                        entries.add(ModItems.CAULIFLOWER_SEEDS);
                         entries.add(ModItems.LAUNCHER_STAFF);
                         entries.add(ModItems.BLOCKUP_MOVER);
                     }).build());

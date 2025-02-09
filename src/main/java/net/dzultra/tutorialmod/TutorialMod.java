@@ -8,6 +8,7 @@ import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.potion.ModPotions;
 import net.dzultra.tutorialmod.sound.ModSounds;
+import net.dzultra.tutorialmod.util.ModCrops;
 import net.dzultra.tutorialmod.util.ModEvents;
 import net.fabricmc.api.ModInitializer;
 
@@ -30,5 +31,6 @@ public class TutorialMod implements ModInitializer {
 		ModPotions.registerPotions();
 		ModEvents.registerEvents();
 		ModEnchantmentEffects.registerEnchantmentEffects();
+		ModCrops.registerCrops();
 	}
 }
