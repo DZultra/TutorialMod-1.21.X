@@ -66,7 +66,12 @@
   "trim_material.tutorialmod.pink_garnet": "Pink Garnet Material",
   "trim_pattern.tutorialmod.kaupen": "Kaupen Armor Pattern",
 
-  "effect.tutorialmod.slimey": "Slimey"
+  "effect.tutorialmod.slimey": "Slimey",
 
-
+  "painting.tutorialmod.world.title": "World",
+  "painting.tutorialmod.world.author": "NanoAttack",
+  "painting.tutorialmod.shrimp.title": "Shrimp",
+  "painting.tutorialmod.shrimp.author": "NanoAttack",
+  "painting.tutorialmod.saw_them.title": "Saw Them",
+  "painting.tutorialmod.saw_them.author": "NanoAttack"
 }
