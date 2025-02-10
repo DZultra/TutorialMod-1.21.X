@@ -66,6 +66,13 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PINK_GARNET_WALL);
                         entries.add(ModBlocks.PINK_GARNET_DOOR);
                         entries.add(ModBlocks.PINK_GARNET_TRAPDOOR);
+                        entries.add(ModBlocks.DRIFTWOOD_LOG);
+                        entries.add(ModBlocks.DRIFTWOOD_WOOD);
+                        entries.add(ModBlocks.STRIPPED_DRIFTWOOD_LOG);
+                        entries.add(ModBlocks.STRIPPED_DRIFTWOOD_WOOD);
+                        entries.add(ModBlocks.DRIFTWOOD_PLANKS);
+                        entries.add(ModBlocks.DRIFTWOOD_LEAVES);
+                        entries.add(ModBlocks.DRIFTWOOD_SAPLING);
                         entries.add(ModBlocks.LEVITATION_BLOCK);
                         entries.add(ModBlocks.KABOOM_BLOCK);
                         entries.add(ModBlocks.LAUNCH_BLOCK);
