@@ -54,6 +54,8 @@ public class ModItemGroups {
                         entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_ORE);
                         entries.add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
+                        entries.add(ModBlocks.PINK_GARNET_NETHER_ORE);
+                        entries.add(ModBlocks.PINK_GARNET_END_ORE);
                         entries.add(ModBlocks.MAGIC_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_STAIRS);
                         entries.add(ModBlocks.PINK_GARNET_SLAB);
