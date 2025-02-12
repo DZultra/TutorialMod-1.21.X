@@ -1,4 +1,4 @@
-// 1.21	2025-02-12T14:40:51.9154597	Tutorial Mod/Model Definitions
+// 1.21	2025-02-12T14:59:33.8615934	Tutorial Mod/Model Definitions
 d07d9c39d26911876be7b596eca7527632b20be2 assets\tutorialmod\models\item\pink_garnet_horse_armor.json
 75e5b55e50c1534b829f5a052542c160ae5ed12d assets\tutorialmod\models\item\pink_garnet_slab.json
 93315526f85f2922c4e6e345c498fe6f4287fd86 assets\tutorialmod\blockstates\pink_garnet_fence_gate.json
@@ -190,6 +190,6 @@ c0f86e3f90e3aee91ec48242469069878a02edef assets\tutorialmod\models\block\pink_ga
 2ea97b36519593655003595358341ae2e9f6b7f8 assets\tutorialmod\models\block\pink_garnet_trapdoor_top.json
 78060f761e21d98042a47bf0698ec8ee5d9abad2 assets\tutorialmod\models\block\pink_garnet_wall_side.json
 4d633dc23654e5f70770dc4b835059a04300f26f assets\tutorialmod\models\block\pink_garnet_lamp_on.json
-cf03d9b7b2150f5a417fd3b5404a3d738bd52d91 assets\tutorialmod\models\block\kaboom_block.json
 b9df931d2826fe1668a4b0dc0b0c12b648e478cc assets\tutorialmod\models\item\pink_garnet_helmet_netherite_trim.json
+cf03d9b7b2150f5a417fd3b5404a3d738bd52d91 assets\tutorialmod\models\block\kaboom_block.json
 f3f72a1eb57f8b905366cac9bf1a67bca00e859b assets\tutorialmod\models\block\pink_garnet_slab.json
