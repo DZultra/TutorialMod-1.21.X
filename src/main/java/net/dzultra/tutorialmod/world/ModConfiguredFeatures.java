@@ -51,12 +51,12 @@ public class ModConfiguredFeatures {
 
         register(context, DRIFTWOOD_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(ModBlocks.DRIFTWOOD_LOG),
-                new StraightTrunkPlacer(5, 6, 3),
+                new StraightTrunkPlacer(4, 2, 0),
 
                 BlockStateProvider.of(ModBlocks.DRIFTWOOD_LEAVES),
-                new BlobFoliagePlacer(ConstantIntProvider.create(4), ConstantIntProvider.create(1), 3),
+                new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
 
-                new TwoLayersFeatureSize(1, 0, 2)).dirtProvider(BlockStateProvider.of(Blocks.STONE)).build());
+                new TwoLayersFeatureSize(1, 0, 1)).build());
 
         register(context, HONEY_BERRY_BUSH_KEY, Feature.RANDOM_PATCH,
                 ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK,
