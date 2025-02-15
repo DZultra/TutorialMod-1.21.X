@@ -4,6 +4,8 @@ import net.dzultra.tutorialmod.block.ModBlocks;
 import net.dzultra.tutorialmod.component.ModDataComponentTypes;
 import net.dzultra.tutorialmod.effect.ModEffects;
 import net.dzultra.tutorialmod.enchantment.ModEnchantmentEffects;
+import net.dzultra.tutorialmod.entity.ModEntities;
+import net.dzultra.tutorialmod.entity.custom.MantisEntity;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.potion.ModPotions;
@@ -38,5 +40,7 @@ public class TutorialMod implements ModInitializer {
 		ModWorldGeneration.generateModWorldGen();
 		ModFlammableBlocks.registerFlammableBlocks();
 		ModStrippableBlocks.registerStrippableBlocks();
+		ModEntities.registerModEntities();
+		MantisEntity.registerMantisAttributes();
 	}
 }

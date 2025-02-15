@@ -2,6 +2,7 @@ package net.dzultra.tutorialmod.item;
 
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.item.custom.*;
 import net.dzultra.tutorialmod.sound.ModSounds;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -80,6 +81,9 @@ public class ModItems {
 
     public static final Item HONEY_BERRIES = registerItem("honey_berries",
             new AliasedBlockItem(ModBlocks.HONEY_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.HONEY_BERRIES)));
+
+    public static final Item MANTIS_SPAWN_EGG = registerItem("mantis_spawn_egg",
+            new SpawnEggItem(ModEntities.MANTIS, 0x9dc783, 0xbfaf5f, new Item.Settings()));
 
     // Everything below this is made myself
 

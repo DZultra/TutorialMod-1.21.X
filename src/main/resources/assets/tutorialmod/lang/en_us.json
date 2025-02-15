@@ -24,6 +24,7 @@
   "item.tutorialmod.bar_brawl_music_disc.desc": "Bryan Tech - Bar Brawl (CC0)",
   "item.tutorialmod.cauliflower_seeds": "Cauliflower Seeds",
   "item.tutorialmod.honey_berries": "Honey Berries",
+  "item.tutorialmod.mantis_spawn_egg": "Mantis Spawn Egg",
 
   "item.minecraft.potion.effect.slimey_potion": "Potion of Slimey",
   "item.minecraft.splash_potion.effect.slimey_potion": "Splash Potion of Slimey",
@@ -88,5 +89,7 @@
   "painting.tutorialmod.saw_them.title": "Saw Them",
   "painting.tutorialmod.saw_them.author": "NanoAttack",
 
-  "enchantment.tutorialmod.lightning_striker": "Lightning Striker"
+  "enchantment.tutorialmod.lightning_striker": "Lightning Striker",
+
+  "entity.tutorialmod.mantis": "Mantis"
 }
