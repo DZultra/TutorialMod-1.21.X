@@ -4,6 +4,8 @@ import net.dzultra.tutorialmod.block.ModBlocks;
 import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.client.MantisModel;
 import net.dzultra.tutorialmod.entity.client.MantisRenderer;
+import net.dzultra.tutorialmod.entity.client.TomahawkProjectileModel;
+import net.dzultra.tutorialmod.entity.client.TomahawkProjectileRenderer;
 import net.dzultra.tutorialmod.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -24,5 +26,8 @@ public class TutorialModClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(MantisModel.MANTIS, MantisModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.MANTIS, MantisRenderer::new);
+
+        EntityModelLayerRegistry.registerModelLayer(TomahawkProjectileModel.TOMAHAWK, TomahawkProjectileModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.TOMAHAWK, TomahawkProjectileRenderer::new);
     }
 }

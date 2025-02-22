@@ -25,6 +25,7 @@
   "item.tutorialmod.cauliflower_seeds": "Cauliflower Seeds",
   "item.tutorialmod.honey_berries": "Honey Berries",
   "item.tutorialmod.mantis_spawn_egg": "Mantis Spawn Egg",
+  "item.tutorialmod.tomahawk": "Tomahawk",
 
   "item.minecraft.potion.effect.slimey_potion": "Potion of Slimey",
   "item.minecraft.splash_potion.effect.slimey_potion": "Splash Potion of Slimey",
@@ -91,5 +92,6 @@
 
   "enchantment.tutorialmod.lightning_striker": "Lightning Striker",
 
-  "entity.tutorialmod.mantis": "Mantis"
+  "entity.tutorialmod.mantis": "Mantis",
+  "entity.tutorialmod.tomahawk": "Tomahawk"
 }

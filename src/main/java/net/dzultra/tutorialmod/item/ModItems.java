@@ -85,6 +85,9 @@ public class ModItems {
     public static final Item MANTIS_SPAWN_EGG = registerItem("mantis_spawn_egg",
             new SpawnEggItem(ModEntities.MANTIS, 0x9dc783, 0xbfaf5f, new Item.Settings()));
 
+    public static final Item TOMAHAWK = registerItem("tomahawk",
+            new TomahawkItem(new Item.Settings().maxCount(16)));
+
     // Everything below this is made myself
 
     public static final Item HONEY_JAR = registerItem("honey_jar", new HoneyJarItem(new Item.Settings()
