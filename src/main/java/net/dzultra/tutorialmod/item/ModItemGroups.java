@@ -43,6 +43,7 @@ public class ModItemGroups {
                         entries.add(ModItems.HONEY_BERRIES);
                         entries.add(ModItems.MANTIS_SPAWN_EGG);
                         entries.add(ModItems.TOMAHAWK);
+                        entries.add(ModItems.SPECTRE_STAFF);
                         entries.add(ModItems.LAUNCHER_STAFF);
                         entries.add(ModItems.BLOCKUP_MOVER);
                     }).build());

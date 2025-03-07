@@ -88,6 +88,9 @@ public class ModItems {
     public static final Item TOMAHAWK = registerItem("tomahawk",
             new TomahawkItem(new Item.Settings().maxCount(16)));
 
+    public static final Item SPECTRE_STAFF = registerItem("spectre_staff",
+            new Item(new Item.Settings().maxCount(1)));
+
     // Everything below this is made myself
 
     public static final Item HONEY_JAR = registerItem("honey_jar", new HoneyJarItem(new Item.Settings()
