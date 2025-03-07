@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod.block.custom;
 
 import net.dzultra.tutorialmod.item.ModItems;
+import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.util.ModTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -32,6 +33,7 @@ public class MagicBlock extends Block {
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player,
                                  BlockHitResult hit) {
         world.playSound(player, pos, SoundEvents.BLOCK_AMETHYST_BLOCK_CHIME, SoundCategory.BLOCKS, 1f, 1f);
+        world.addParticle(ModParticles.PINK_GARNET_PARTICLE, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, 0, 1, 0);
         return ActionResult.SUCCESS;
     }
 

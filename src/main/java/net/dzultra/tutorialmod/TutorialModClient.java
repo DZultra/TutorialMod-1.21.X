@@ -3,9 +3,12 @@ package net.dzultra.tutorialmod;
 import net.dzultra.tutorialmod.block.ModBlocks;
 import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.client.*;
+import net.dzultra.tutorialmod.particle.ModParticles;
+import net.dzultra.tutorialmod.particle.PinkGarnetParticle;
 import net.dzultra.tutorialmod.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
@@ -28,5 +31,7 @@ public class TutorialModClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.TOMAHAWK, TomahawkProjectileRenderer::new);
 
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
+
+        ParticleFactoryRegistry.getInstance().register(ModParticles.PINK_GARNET_PARTICLE, PinkGarnetParticle.Factory::new);
     }
 }

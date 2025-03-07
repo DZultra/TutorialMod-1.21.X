@@ -8,6 +8,7 @@ import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.custom.MantisEntity;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
+import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.potion.ModPotions;
 import net.dzultra.tutorialmod.sound.ModSounds;
 import net.dzultra.tutorialmod.util.*;
@@ -43,5 +44,6 @@ public class TutorialMod implements ModInitializer {
 		MantisEntity.registerMantisAttributes();
 		ModVillagers.registerVillagers();
 		ModVillagerTrades.registerVillagerTrades();
+		ModParticles.registerParticles();
 	}
 }
