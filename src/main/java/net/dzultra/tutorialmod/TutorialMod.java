@@ -10,10 +10,9 @@ import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.potion.ModPotions;
 import net.dzultra.tutorialmod.sound.ModSounds;
-import net.dzultra.tutorialmod.util.ModCrops;
-import net.dzultra.tutorialmod.util.ModEvents;
-import net.dzultra.tutorialmod.util.ModFlammableBlocks;
-import net.dzultra.tutorialmod.util.ModStrippableBlocks;
+import net.dzultra.tutorialmod.util.*;
+import net.dzultra.tutorialmod.villager.ModVillagerTrades;
+import net.dzultra.tutorialmod.villager.ModVillagers;
 import net.dzultra.tutorialmod.world.gen.ModWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -42,5 +41,7 @@ public class TutorialMod implements ModInitializer {
 		ModStrippableBlocks.registerStrippableBlocks();
 		ModEntities.registerModEntities();
 		MantisEntity.registerMantisAttributes();
+		ModVillagers.registerVillagers();
+		ModVillagerTrades.registerVillagerTrades();
 	}
 }

@@ -95,5 +95,7 @@
   "enchantment.tutorialmod.lightning_striker": "Lightning Striker",
 
   "entity.tutorialmod.mantis": "Mantis",
-  "entity.tutorialmod.tomahawk": "Tomahawk"
+  "entity.tutorialmod.tomahawk": "Tomahawk",
+
+  "entity.minecraft.villager.kaupenger": "Kaupenger"
 }
