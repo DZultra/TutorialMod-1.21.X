@@ -45,5 +45,6 @@ public class TutorialMod implements ModInitializer {
 		ModVillagers.registerVillagers();
 		ModVillagerTrades.registerVillagerTrades();
 		ModParticles.registerParticles();
+		ModLootTableModifiers.modifyLootTables();
 	}
 }
