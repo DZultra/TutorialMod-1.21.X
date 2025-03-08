@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod;
 
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
 import net.dzultra.tutorialmod.component.ModDataComponentTypes;
 import net.dzultra.tutorialmod.effect.ModEffects;
 import net.dzultra.tutorialmod.enchantment.ModEnchantmentEffects;
@@ -46,5 +47,6 @@ public class TutorialMod implements ModInitializer {
 		ModVillagerTrades.registerVillagerTrades();
 		ModParticles.registerParticles();
 		ModLootTableModifiers.modifyLootTables();
+		ModBlockEntities.registerBlockEntities();
 	}
 }
