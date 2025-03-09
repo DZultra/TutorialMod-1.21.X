@@ -1,6 +1,8 @@
 package net.dzultra.tutorialmod;
 
 import net.dzultra.tutorialmod.block.ModBlocks;
+import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
+import net.dzultra.tutorialmod.block.entity.renderer.PedestalBlockEntityRenderer;
 import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.client.*;
 import net.dzultra.tutorialmod.particle.ModParticles;
@@ -12,6 +14,7 @@ import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 
 public class TutorialModClient implements ClientModInitializer {
     @Override
@@ -33,5 +36,6 @@ public class TutorialModClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.CHAIR, ChairRenderer::new);
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.PINK_GARNET_PARTICLE, PinkGarnetParticle.Factory::new);
+        BlockEntityRendererFactories.register(ModBlockEntities.PEDESTAL_BE, PedestalBlockEntityRenderer::new);
     }
 }

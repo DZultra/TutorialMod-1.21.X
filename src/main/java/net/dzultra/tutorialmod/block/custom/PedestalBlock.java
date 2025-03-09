@@ -1,9 +1,12 @@
 package net.dzultra.tutorialmod.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
 import net.dzultra.tutorialmod.block.entity.custom.PedestalBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
@@ -58,6 +61,12 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
             }
             super.onStateReplaced(state, world, pos, newState, moved);
         }
+    }
+
+    @Override
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return validateTicker(type, ModBlockEntities.PEDESTAL_BE,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
     @Override
