@@ -7,6 +7,7 @@ import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.client.*;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.particle.PinkGarnetParticle;
+import net.dzultra.tutorialmod.util.ModKeyBinds;
 import net.dzultra.tutorialmod.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -37,5 +38,7 @@ public class TutorialModClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.PINK_GARNET_PARTICLE, PinkGarnetParticle.Factory::new);
         BlockEntityRendererFactories.register(ModBlockEntities.PEDESTAL_BE, PedestalBlockEntityRenderer::new);
+
+        ModKeyBinds.registerModKeyBinds();
     }
 }
