@@ -7,6 +7,8 @@ import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.client.*;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.particle.PinkGarnetParticle;
+import net.dzultra.tutorialmod.screen.ModScreenHandlers;
+import net.dzultra.tutorialmod.screen.custom.PedestalScreen;
 import net.dzultra.tutorialmod.util.ModKeyBinds;
 import net.dzultra.tutorialmod.util.ModModelPredicates;
 import net.fabricmc.api.ClientModInitializer;
@@ -14,6 +16,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 
@@ -38,6 +41,7 @@ public class TutorialModClient implements ClientModInitializer {
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.PINK_GARNET_PARTICLE, PinkGarnetParticle.Factory::new);
         BlockEntityRendererFactories.register(ModBlockEntities.PEDESTAL_BE, PedestalBlockEntityRenderer::new);
+        HandledScreens.register(ModScreenHandlers.PEDESTAL_SCREEN_HANDLER, PedestalScreen::new);
 
         ModKeyBinds.registerModKeyBinds();
     }

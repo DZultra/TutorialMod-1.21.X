@@ -11,6 +11,7 @@ import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.potion.ModPotions;
+import net.dzultra.tutorialmod.screen.ModScreenHandlers;
 import net.dzultra.tutorialmod.sound.ModSounds;
 import net.dzultra.tutorialmod.util.*;
 import net.dzultra.tutorialmod.villager.ModVillagerTrades;
@@ -48,5 +49,6 @@ public class TutorialMod implements ModInitializer {
 		ModParticles.registerParticles();
 		ModLootTableModifiers.modifyLootTables();
 		ModBlockEntities.registerBlockEntities();
+		ModScreenHandlers.registerScreenHandlers();
 	}
 }

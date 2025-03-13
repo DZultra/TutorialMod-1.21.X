@@ -73,16 +73,24 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
                                              PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
-            if (player.isSneaking()) return ItemActionResult.FAIL;
+
+            if (player.isSneaking() && !world.isClient()) {
+                player.openHandledScreen(pedestalBlockEntity);
+                return ItemActionResult.SUCCESS;
+            }
 
             if(pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
+                // Block Empty & Hand has Item -> Item from Hand into Block
                 pedestalBlockEntity.setStack(0, stack.copyWithCount(1));
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
                 stack.decrement(1);
 
                 pedestalBlockEntity.markDirty();
                 world.updateListeners(pos, state, state, 0);
-            } else if(stack.isEmpty() && !pedestalBlockEntity.isEmpty()) {
+            }
+
+            else if(!pedestalBlockEntity.isEmpty() && stack.isEmpty()) {
+                // Block has Item & Hand Empty -> Item from Block into Hand
                 ItemStack stackOnPedestal = pedestalBlockEntity.getStack(0);
                 player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
@@ -90,9 +98,15 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
 
                 pedestalBlockEntity.markDirty();
                 world.updateListeners(pos, state, state, 0);
-            } else if(stack.isEmpty() && pedestalBlockEntity.isEmpty()) {
-                return ItemActionResult.FAIL;
-            } else if(!stack.isEmpty() && !pedestalBlockEntity.isEmpty()) {
+            }
+
+            else if(pedestalBlockEntity.isEmpty() && stack.isEmpty()) {
+                // Block Empty & Hand Empty -> Do nothing
+                return ItemActionResult.CONSUME;
+            }
+
+            else if(!pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
+                // Block has Item & Hand has Item -> If same ItemStack increment Stack, if not same ItemStack do nth
                 if (stack.isOf(pedestalBlockEntity.getStack(0).getItem())) {
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
                     pedestalBlockEntity.clear();
@@ -101,11 +115,11 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                     pedestalBlockEntity.markDirty();
                     world.updateListeners(pos, state, state, 0);
                 } else {
-                    return ItemActionResult.CONSUME;
+                    return ItemActionResult.CONSUME; // Do nth but don't place block
                 }
             }
+            return ItemActionResult.SUCCESS;
         }
-
-        return ItemActionResult.SUCCESS;
+        return ItemActionResult.FAIL;
     }
 }

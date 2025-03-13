@@ -28,7 +28,6 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
         ItemStack stack = entity.getStack(0);
         BlockPos entity_pos = entity.getPos();
-        World world = entity.getWorld();
         matrices.push();
         matrices.translate(0.5f, 1.15f, 0.5f); // Position
         matrices.scale(0.5f, 0.5f, 0.5f); // Size

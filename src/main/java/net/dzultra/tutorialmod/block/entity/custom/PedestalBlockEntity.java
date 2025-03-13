@@ -3,8 +3,12 @@ package net.dzultra.tutorialmod.block.entity.custom;
 import net.dzultra.tutorialmod.block.entity.ImplementedInventory;
 import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
 import net.dzultra.tutorialmod.particle.ModParticles;
+import net.dzultra.tutorialmod.screen.custom.PedestalScreenHandler;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -13,6 +17,9 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,12 +27,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class PedestalBlockEntity extends BlockEntity implements ImplementedInventory {
+public class PedestalBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
     private float rotation = 0;
-    private float velocityX;
-    private float velocityY;
-    private float velocityZ;
     private int tickCounter = 0;
 
     public PedestalBlockEntity(BlockPos pos, BlockState state) {
@@ -73,6 +77,23 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
+    }
+
+    // GUI
+
+    @Override
+    public BlockPos getScreenOpeningData(ServerPlayerEntity serverPlayerEntity) {
+        return this.pos;
+    }
+
+    @Override
+    public Text getDisplayName() {
+        return Text.literal("Pedestal");
+    }
+
+    @Override
+    public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
+        return new PedestalScreenHandler(syncId, playerInventory, this.pos);
     }
 
 
