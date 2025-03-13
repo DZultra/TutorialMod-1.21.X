@@ -5,6 +5,7 @@ import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.screen.custom.PedestalScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,6 +23,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -96,6 +98,15 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
         return new PedestalScreenHandler(syncId, playerInventory, this.pos);
     }
 
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction side) {
+        return false;
+    }
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
+        return false;
+    }
 
     // Client Server Sync
     @Nullable
@@ -107,5 +118,15 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        notifyClient();
+    }
+
+    public void notifyClient() {
+        this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), Block.NOTIFY_ALL);
     }
 }

@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod.block.custom;
 
 import com.mojang.serialization.MapCodec;
+import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
 import net.dzultra.tutorialmod.block.entity.custom.PedestalBlockEntity;
 import net.minecraft.block.*;
@@ -89,7 +90,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 world.updateListeners(pos, state, state, 0);
             }
 
-            else if(!pedestalBlockEntity.isEmpty() && stack.isEmpty()) {
+            else if(!pedestalBlockEntity.isEmpty() && stack.isEmpty() && !player.isSneaking()) {
                 // Block has Item & Hand Empty -> Item from Block into Hand
                 ItemStack stackOnPedestal = pedestalBlockEntity.getStack(0);
                 player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
@@ -107,7 +108,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
 
             else if(!pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
                 // Block has Item & Hand has Item -> If same ItemStack increment Stack, if not same ItemStack do nth
-                if (stack.isOf(pedestalBlockEntity.getStack(0).getItem())) {
+                if (stack.isOf(pedestalBlockEntity.getStack(0).getItem()) && (stack.getCount() < stack.getMaxCount())) {
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
                     pedestalBlockEntity.clear();
                     stack.increment(1);
