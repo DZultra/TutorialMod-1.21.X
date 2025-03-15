@@ -10,11 +10,14 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerSyncHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -70,6 +73,8 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
+
+
     @Override
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
                                              PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -82,7 +87,9 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
 
             if(pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
                 // Block Empty & Hand has Item -> Item from Hand into Block
-                pedestalBlockEntity.setStack(0, stack.copyWithCount(1));
+                pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
+                    itemStacks.set(0, stack.copyWithCount(1));
+                });
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
                 stack.decrement(1);
 
@@ -95,7 +102,9 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 ItemStack stackOnPedestal = pedestalBlockEntity.getStack(0);
                 player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
-                pedestalBlockEntity.clear();
+                pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
+                    itemStacks.clear();
+                });
 
                 pedestalBlockEntity.markDirty();
                 world.updateListeners(pos, state, state, 0);
@@ -111,7 +120,10 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 // Block has Item & Hand has Item -> If same ItemStack increment Stack, if not same ItemStack do nth
                 if (stack.isOf(pedestalBlockEntity.getStack(0).getItem()) && (stack.getCount() < stack.getMaxCount())) {
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
-                    pedestalBlockEntity.clear();
+                    pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
+                        itemStacks.clear();
+                    });
+
                     stack.increment(1);
 
                     pedestalBlockEntity.markDirty();
