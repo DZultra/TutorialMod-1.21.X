@@ -2,7 +2,6 @@ package net.dzultra.tutorialmod.entity.custom;
 
 import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.item.ModItems;
-import net.minecraft.client.util.math.Vector2f;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,6 +11,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
+import org.joml.Vector2f;
 
 public class TomahawkProjectileEntity extends PersistentProjectileEntity {
     private float rotation;
