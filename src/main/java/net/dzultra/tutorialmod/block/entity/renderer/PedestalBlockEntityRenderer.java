@@ -12,6 +12,7 @@ import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.LightType;
@@ -25,8 +26,11 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
     @Override
     public void render(PedestalBlockEntity entity, float tickDelta, MatrixStack matrices,
                        VertexConsumerProvider vertexConsumers, int light, int overlay) {
+        if (entity.getStack(0).isEmpty()) return;
+
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        ItemStack stack = entity.getStack(0);
+        DefaultedList<ItemStack> defaultedList = entity.getItems();
+        ItemStack stack = defaultedList.getFirst();
         BlockPos entity_pos = entity.getPos();
         matrices.push();
         matrices.translate(0.5f, 1.15f, 0.5f); // Position

@@ -103,6 +103,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
 
             else if(pedestalBlockEntity.isEmpty() && stack.isEmpty()) {
                 // Block Empty & Hand Empty -> Do nothing
+                pedestalBlockEntity.markDirty();
                 return ItemActionResult.CONSUME;
             }
 
@@ -116,6 +117,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                     pedestalBlockEntity.markDirty();
                     world.updateListeners(pos, state, state, 0);
                 } else {
+                    pedestalBlockEntity.markDirty();
                     return ItemActionResult.CONSUME; // Do nth but don't place block
                 }
             }
