@@ -68,7 +68,7 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
 
     @Override
     public DefaultedList<ItemStack> getItems() {
-        markDirty();
+        this.markDirty();
         return this.inventory;
     }
 
@@ -120,27 +120,21 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
 
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
-        NbtCompound nbt = new NbtCompound();
-        this.writeNbt(nbt, registryLookup);
         return createNbt(registryLookup);
     }
 
 
     public void syncedInventoryModification(Consumer<DefaultedList<ItemStack>> inventoryConsumer) {
         inventoryConsumer.accept(this.getItems());
-        TutorialMod.LOGGER.info("syncedInventoryModification before ServerWorld check");
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             serverWorld.getChunkManager().markForUpdate(this.getPos());
             this.markDirty();
-            TutorialMod.LOGGER.info("syncedInventoryModification in ServerWorld check");
         }
-        TutorialMod.LOGGER.info("syncedInventoryModification after ServerWorld check");
     }
 
     @Override
     public void markDirty() {
         super.markDirty();
-        TutorialMod.LOGGER.info("markDirty before ServerWorld check");
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             TutorialMod.LOGGER.info("markDirty after ServerWorld check");
             var packet = this.toUpdatePacket();

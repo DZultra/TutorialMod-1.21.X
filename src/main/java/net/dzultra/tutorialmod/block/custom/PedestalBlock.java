@@ -103,6 +103,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
                 pedestalBlockEntity.syncedInventoryModification(inventory -> {
+                    //inventory.set(0, ItemStack.EMPTY);
                     inventory.clear();
                 });
 
@@ -121,6 +122,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 if (playerStack.isOf(pedestalBlockEntity.getStack(0).getItem()) && (playerStack.getCount() < playerStack.getMaxCount())) {
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
                     pedestalBlockEntity.syncedInventoryModification(inventory -> {
+                        //inventory.set(0, ItemStack.EMPTY);
                         inventory.clear();
                     });
 
