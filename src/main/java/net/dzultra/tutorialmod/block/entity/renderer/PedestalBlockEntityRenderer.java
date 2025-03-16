@@ -1,7 +1,6 @@
 package net.dzultra.tutorialmod.block.entity.renderer;
 
 import net.dzultra.tutorialmod.block.entity.custom.PedestalBlockEntity;
-import net.dzultra.tutorialmod.particle.ModParticles;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
@@ -29,8 +28,8 @@ public class PedestalBlockEntityRenderer implements BlockEntityRenderer<Pedestal
         if (entity.getStack(0).isEmpty()) return;
 
         ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
-        DefaultedList<ItemStack> defaultedList = entity.getItems();
-        ItemStack stack = defaultedList.getFirst();
+        DefaultedList<ItemStack> inventory = entity.getItems();
+        ItemStack stack = inventory.getFirst();
         BlockPos entity_pos = entity.getPos();
         matrices.push();
         matrices.translate(0.5f, 1.15f, 0.5f); // Position

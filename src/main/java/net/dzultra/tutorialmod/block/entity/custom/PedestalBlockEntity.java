@@ -68,19 +68,20 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
 
     @Override
     public DefaultedList<ItemStack> getItems() {
-        return inventory;
+        markDirty();
+        return this.inventory;
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
-        Inventories.writeNbt(nbt, inventory, registryLookup);
+        Inventories.writeNbt(nbt, this.inventory, registryLookup);
     }
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
-        Inventories.readNbt(nbt, inventory, registryLookup);
+        Inventories.readNbt(nbt, this.inventory, registryLookup);
     }
 
     // GUI
@@ -126,10 +127,32 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
 
 
     public void syncedInventoryModification(Consumer<DefaultedList<ItemStack>> inventoryConsumer) {
-        inventoryConsumer.accept(this.inventory);
+        inventoryConsumer.accept(this.getItems());
+        TutorialMod.LOGGER.info("syncedInventoryModification before ServerWorld check");
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             serverWorld.getChunkManager().markForUpdate(this.getPos());
+            this.markDirty();
+            TutorialMod.LOGGER.info("syncedInventoryModification in ServerWorld check");
         }
-        TutorialMod.LOGGER.info("syncedInventoryModification");
+        TutorialMod.LOGGER.info("syncedInventoryModification after ServerWorld check");
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        TutorialMod.LOGGER.info("markDirty before ServerWorld check");
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
+            TutorialMod.LOGGER.info("markDirty after ServerWorld check");
+            var packet = this.toUpdatePacket();
+            serverWorld.getChunkManager()
+                    .chunkLoadingManager
+                    .getPlayersWatchingChunk(
+                            new ChunkPos(this.pos)
+                    )
+                    .forEach(
+                            player -> player.networkHandler.sendPacket(packet)
+                    );
+            serverWorld.getChunkManager().markForUpdate(this.getPos());
+        }
     }
 }

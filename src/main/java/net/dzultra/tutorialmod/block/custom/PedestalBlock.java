@@ -76,7 +76,7 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
 
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
+    protected ItemActionResult onUseWithItem(ItemStack playerStack, BlockState state, World world, BlockPos pos,
                                              PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
 
@@ -85,46 +85,46 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 return ItemActionResult.SUCCESS;
             }
 
-            if(pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
+            if(pedestalBlockEntity.isEmpty() && !playerStack.isEmpty()) {
                 // Block Empty & Hand has Item -> Item from Hand into Block
-                pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
-                    itemStacks.set(0, stack.copyWithCount(1));
+                pedestalBlockEntity.syncedInventoryModification(inventory -> {
+                    inventory.set(0, playerStack.copyWithCount(1));
                 });
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
-                stack.decrement(1);
+                playerStack.decrement(1);
 
                 pedestalBlockEntity.markDirty();
                 world.updateListeners(pos, state, state, 0);
             }
 
-            else if(!pedestalBlockEntity.isEmpty() && stack.isEmpty() && !player.isSneaking()) {
+            else if(!pedestalBlockEntity.isEmpty() && playerStack.isEmpty() && !player.isSneaking()) {
                 // Block has Item & Hand Empty -> Item from Block into Hand
                 ItemStack stackOnPedestal = pedestalBlockEntity.getStack(0);
                 player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
                 world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
-                pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
-                    itemStacks.clear();
+                pedestalBlockEntity.syncedInventoryModification(inventory -> {
+                    inventory.clear();
                 });
 
                 pedestalBlockEntity.markDirty();
                 world.updateListeners(pos, state, state, 0);
             }
 
-            else if(pedestalBlockEntity.isEmpty() && stack.isEmpty()) {
+            else if(pedestalBlockEntity.isEmpty() && playerStack.isEmpty()) {
                 // Block Empty & Hand Empty -> Do nothing
                 pedestalBlockEntity.markDirty();
                 return ItemActionResult.CONSUME;
             }
 
-            else if(!pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
+            else if(!pedestalBlockEntity.isEmpty() && !playerStack.isEmpty()) {
                 // Block has Item & Hand has Item -> If same ItemStack increment Stack, if not same ItemStack do nth
-                if (stack.isOf(pedestalBlockEntity.getStack(0).getItem()) && (stack.getCount() < stack.getMaxCount())) {
+                if (playerStack.isOf(pedestalBlockEntity.getStack(0).getItem()) && (playerStack.getCount() < playerStack.getMaxCount())) {
                     world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
-                    pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
-                        itemStacks.clear();
+                    pedestalBlockEntity.syncedInventoryModification(inventory -> {
+                        inventory.clear();
                     });
 
-                    stack.increment(1);
+                    playerStack.increment(1);
 
                     pedestalBlockEntity.markDirty();
                     world.updateListeners(pos, state, state, 0);

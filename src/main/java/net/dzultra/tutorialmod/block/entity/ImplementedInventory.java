@@ -1,5 +1,6 @@
 package net.dzultra.tutorialmod.block.entity;
 
+import net.dzultra.tutorialmod.block.entity.custom.PedestalBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;
