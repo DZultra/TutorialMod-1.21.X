@@ -103,6 +103,9 @@ public class ModBlocks {
     public static final Block PEDESTAL = registerBlock("pedestal",
             new PedestalBlock(AbstractBlock.Settings.create().nonOpaque()));
 
+    public static final Block GROWTH_CHAMBER = registerBlock("growth_chamber",
+            new GrowthChamberBlock(AbstractBlock.Settings.create()));
+
     // Everything below is self-made
 
     public static final Block KABOOM_BLOCK = registerBlock("kaboom_block",

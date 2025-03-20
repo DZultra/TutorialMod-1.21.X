@@ -1,5 +1,6 @@
 package net.dzultra.tutorialmod.block.entity.custom;
 
+import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.block.entity.ImplementedInventory;
 import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
 import net.dzultra.tutorialmod.particle.ModParticles;
@@ -20,6 +21,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +30,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Consumer;
 
 public class PedestalBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
@@ -40,27 +43,27 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
 
     public float getRenderingRotation() {
         rotation += 0.5f;
-        if(rotation >= 360) {
+        if (rotation >= 360) {
             rotation = 0;
         }
         return rotation;
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        if (!world.isClient) return;
+        if (!world.isClient()) return;
 
-        if(world.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
-            if (!pedestalBlockEntity.isEmpty()) {
-                tickCounter++;
-                if (tickCounter >= 7) {
-                    double velocityX = ThreadLocalRandom.current().nextDouble(-0.02, 0.02);
-                    double velocityY = ThreadLocalRandom.current().nextDouble(0, 0.02);
-                    double velocityZ = ThreadLocalRandom.current().nextDouble(-0.02, 0.02);
+        if (!(world.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity)) {
+            return;
+        }
+        if (pedestalBlockEntity.isEmpty()) return;
+        tickCounter++;
+        if (tickCounter >= 7) {
+            double velocityX = ThreadLocalRandom.current().nextDouble(-0.02, 0.02);
+            double velocityY = ThreadLocalRandom.current().nextDouble(0, 0.02);
+            double velocityZ = ThreadLocalRandom.current().nextDouble(-0.02, 0.02);
 
-                    world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pos.getX() + 0.5, pos.getY() + 1.15, pos.getZ() + 0.5, velocityX, velocityY, velocityZ);
-                    tickCounter = 0;
-                }
-            }
+            world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, pos.getX() + 0.5, pos.getY() + 1.15, pos.getZ() + 0.5, velocityX, velocityY, velocityZ);
+            tickCounter = 0;
         }
     }
 
@@ -72,6 +75,7 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
+        //TutorialMod.LOGGER.info("Inventory: {}", this.getItems());
         Inventories.writeNbt(nbt, inventory, registryLookup);
     }
 
@@ -79,6 +83,16 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
+        //TutorialMod.LOGGER.info("nbt read by BE: {}", nbt);
+        //TutorialMod.LOGGER.info("inventory after read: " + inventory);
+    }
+
+    public void syncedInventoryModification(Consumer<DefaultedList<ItemStack>> inventoryConsumer) {
+        inventoryConsumer.accept(this.getItems());
+        TutorialMod.LOGGER.info("syncedInventoryModification");
+        if (this.getWorld() instanceof ServerWorld serverWorld) {
+            serverWorld.getChunkManager().markForUpdate(this.getPos());
+        }
     }
 
     // GUI
@@ -118,15 +132,5 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
-    }
-
-    @Override
-    public void markDirty() {
-        super.markDirty();
-        notifyClient();
-    }
-
-    public void notifyClient() {
-        this.getWorld().updateListeners(this.getPos(), this.getCachedState(), this.getCachedState(), Block.NOTIFY_ALL);
     }
 }

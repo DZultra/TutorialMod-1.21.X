@@ -98,5 +98,6 @@
   "entity.tutorialmod.mantis": "Mantis",
   "entity.tutorialmod.tomahawk": "Tomahawk",
 
-  "entity.minecraft.villager.kaupenger": "Kaupenger"
+  "entity.minecraft.villager.kaupenger": "Kaupenger",
+  "block.tutorialmod.growth_chamber": "Growth Chamber"
 }

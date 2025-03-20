@@ -34,6 +34,8 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ON_STEP_SPAWNER_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ON_SHOOT_DELETE_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TARGETER_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GROWTH_CHAMBER);
+
 
         pinkGarnetPool.stairs(ModBlocks.PINK_GARNET_STAIRS);
         pinkGarnetPool.slab(ModBlocks.PINK_GARNET_SLAB);

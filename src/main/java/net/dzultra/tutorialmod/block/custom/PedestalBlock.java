@@ -10,14 +10,11 @@ import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerSyncHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.ItemScatterer;
-import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
@@ -26,8 +23,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class PedestalBlock extends BlockWithEntity implements BlockEntityProvider {
-    private static final VoxelShape SHAPE =
-            Block.createCuboidShape(2, 0, 2, 14, 13, 14);
+    private static final VoxelShape SHAPE = Block.createCuboidShape(2, 0, 2, 14, 13, 14);
     public static final MapCodec<PedestalBlock> CODEC = PedestalBlock.createCodec(PedestalBlock::new);
 
     public PedestalBlock(Settings settings) {
@@ -57,10 +53,10 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
 
     @Override
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
-        if(state.getBlock() != newState.getBlock()) {
+        if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
-            if(blockEntity instanceof PedestalBlockEntity) {
-                ItemScatterer.spawn(world, pos, ((PedestalBlockEntity) blockEntity));
+            if (blockEntity instanceof PedestalBlockEntity pedestalBlockEntity) {
+                ItemScatterer.spawn(world, pos, pedestalBlockEntity);
                 world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);
@@ -73,68 +69,57 @@ public class PedestalBlock extends BlockWithEntity implements BlockEntityProvide
                 (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
-
-
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack playerStack, BlockState state, World world, BlockPos pos,
+    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos,
                                              PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(world.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity) {
 
-            if (player.isSneaking() && !world.isClient()) {
-                player.openHandledScreen(pedestalBlockEntity);
-                return ItemActionResult.SUCCESS;
-            }
+        if (!(world.getBlockEntity(pos) instanceof PedestalBlockEntity pedestalBlockEntity)) {
+            return ItemActionResult.FAIL;
+        }
 
-            if(pedestalBlockEntity.isEmpty() && !playerStack.isEmpty()) {
-                // Block Empty & Hand has Item -> Item from Hand into Block
-                pedestalBlockEntity.syncedInventoryModification(inventory -> {
-                    inventory.set(0, playerStack.copyWithCount(1));
-                });
-                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
-                playerStack.decrement(1);
-
-                pedestalBlockEntity.markDirty();
-                world.updateListeners(pos, state, state, 0);
-            }
-
-            else if(!pedestalBlockEntity.isEmpty() && playerStack.isEmpty() && !player.isSneaking()) {
-                // Block has Item & Hand Empty -> Item from Block into Hand
-                ItemStack stackOnPedestal = pedestalBlockEntity.getStack(0);
-                player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
-                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
-                pedestalBlockEntity.syncedInventoryModification(inventory -> {
-                    //inventory.set(0, ItemStack.EMPTY);
-                    inventory.clear();
-                });
-
-                pedestalBlockEntity.markDirty();
-                world.updateListeners(pos, state, state, 0);
-            }
-
-            else if(pedestalBlockEntity.isEmpty() && playerStack.isEmpty()) {
-                // Block Empty & Hand Empty -> Do nothing
-                return ItemActionResult.CONSUME;
-            }
-
-            else if(!pedestalBlockEntity.isEmpty() && !playerStack.isEmpty()) {
-                // Block has Item & Hand has Item -> If same ItemStack increment Stack, if not same ItemStack do nth
-                if (playerStack.isOf(pedestalBlockEntity.getStack(0).getItem()) && (playerStack.getCount() < playerStack.getMaxCount())) {
-                    world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
-                    pedestalBlockEntity.syncedInventoryModification(inventory -> {
-                        //inventory.set(0, ItemStack.EMPTY);
-                        inventory.clear();
-                    });
-
-                    playerStack.increment(1);
-
-                    pedestalBlockEntity.markDirty();
-                    world.updateListeners(pos, state, state, 0);
-                } else {
-                    return ItemActionResult.CONSUME; // Do nth but don't place block
-                }
-            }
+        if (player.isSneaking() && !world.isClient()) {
+            player.openHandledScreen(pedestalBlockEntity);
             return ItemActionResult.SUCCESS;
         }
-        return ItemActionResult.FAIL;
+
+        if (pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
+            // Block Empty & Hand has Item -> Item from Hand into Block
+            pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
+                itemStacks.set(0, stack.copyWithCount(1));
+            });
+            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
+            stack.decrement(1);
+
+            pedestalBlockEntity.markDirty();
+            world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
+        } else if (!pedestalBlockEntity.isEmpty() && stack.isEmpty() && !player.isSneaking()) {
+            // Block has Item & Hand Empty -> Item from Block into Hand
+            ItemStack stackOnPedestal = pedestalBlockEntity.getItems().getFirst();
+            player.setStackInHand(Hand.MAIN_HAND, stackOnPedestal);
+            world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 1f);
+            pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
+               itemStacks.set(0, ItemStack.EMPTY);
+            });
+            pedestalBlockEntity.markDirty();
+            world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
+        } else if (pedestalBlockEntity.isEmpty() && stack.isEmpty()) {
+            // Block Empty & Hand Empty -> Do nothing
+            return ItemActionResult.CONSUME;
+        } else if (!pedestalBlockEntity.isEmpty() && !stack.isEmpty()) {
+            // Block has Item & Hand has Item -> If same ItemStack increment Stack, if not same ItemStack do nth
+            if (stack.isOf(pedestalBlockEntity.getStack(0).getItem()) && stack.getCount() < stack.getMaxCount()) {
+                world.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1f, 2f);
+                pedestalBlockEntity.syncedInventoryModification(itemStacks -> {
+                    itemStacks.set(0, ItemStack.EMPTY);
+                });
+                pedestalBlockEntity.markDirty();
+                stack.increment(1);
+
+                world.updateListeners(pos, state, state, Block.NOTIFY_ALL);
+            } else {
+                return ItemActionResult.CONSUME; // Do nothing but don't place block
+            }
+        }
+        return ItemActionResult.SUCCESS;
     }
 }
