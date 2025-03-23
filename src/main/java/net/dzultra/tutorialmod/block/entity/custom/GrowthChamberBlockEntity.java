@@ -39,7 +39,7 @@ public class GrowthChamberBlockEntity extends BlockEntity implements ExtendedScr
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
-    private int maxProgress = 72;
+    private int maxProgress = 0; // No longer hardcoded
 
     public GrowthChamberBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.GROWTH_CHAMBER_BE, pos, state);
@@ -56,8 +56,8 @@ public class GrowthChamberBlockEntity extends BlockEntity implements ExtendedScr
             @Override
             public void set(int index, int value) {
                 switch (index) {
-                    case 0: GrowthChamberBlockEntity.this.progress = value;
-                    case 1: GrowthChamberBlockEntity.this.maxProgress = value;
+                    case 0: GrowthChamberBlockEntity.this.progress = value; break;
+                    case 1: GrowthChamberBlockEntity.this.maxProgress = value; break;
                 }
             }
 
@@ -106,11 +106,11 @@ public class GrowthChamberBlockEntity extends BlockEntity implements ExtendedScr
     }
 
     public void tick(World world, BlockPos pos, BlockState state) {
-        if(hasRecipe()) {
+        if (hasRecipe()) {
             increaseCraftingProgress();
             markDirty(world, pos, state);
 
-            if(hasCraftingFinished()) {
+            if (hasCraftingFinished()) {
                 craftItem();
                 resetProgress();
             }
@@ -121,16 +121,18 @@ public class GrowthChamberBlockEntity extends BlockEntity implements ExtendedScr
 
     private void resetProgress() {
         this.progress = 0;
-        this.maxProgress = 72;
+        // Do not reset maxProgress here; it will be set when a new recipe starts
     }
 
     private void craftItem() {
         Optional<RecipeEntry<GrowthChamberRecipe>> recipe = getCurrentRecipe();
 
-        ItemStack output = recipe.get().value().output();
-        this.removeStack(INPUT_SLOT, 1);
-        this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
-                this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+        if (recipe.isPresent()) {
+            ItemStack output = recipe.get().value().output();
+            this.removeStack(INPUT_SLOT, 1);
+            this.setStack(OUTPUT_SLOT, new ItemStack(output.getItem(),
+                    this.getStack(OUTPUT_SLOT).getCount() + output.getCount()));
+        }
     }
 
     private boolean hasCraftingFinished() {
@@ -143,9 +145,12 @@ public class GrowthChamberBlockEntity extends BlockEntity implements ExtendedScr
 
     private boolean hasRecipe() {
         Optional<RecipeEntry<GrowthChamberRecipe>> recipe = getCurrentRecipe();
-        if(recipe.isEmpty()) {
+        if (recipe.isEmpty()) {
             return false;
         }
+
+        // Set maxProgress to the duration of the current recipe
+        this.maxProgress = recipe.get().value().duration();
 
         ItemStack output = recipe.get().value().output();
 
@@ -167,7 +172,6 @@ public class GrowthChamberBlockEntity extends BlockEntity implements ExtendedScr
 
         return maxCount >= currentCount + count;
     }
-
 
     // Client Server Sync
     @Nullable

@@ -1,5 +1,6 @@
 package net.dzultra.tutorialmod.recipe;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public record GrowthChamberRecipe(Ingredient inputItem, ItemStack output) implements Recipe<GrowthChamberRecipeInput> {
+public record GrowthChamberRecipe(Ingredient inputItem, ItemStack output, int duration) implements Recipe<GrowthChamberRecipeInput> {
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> list = DefaultedList.of();
@@ -21,14 +22,11 @@ public record GrowthChamberRecipe(Ingredient inputItem, ItemStack output) implem
         return list;
     }
 
-    // read Recipe JSON files --> new GrowthChamberRecipe
-
     @Override
     public boolean matches(GrowthChamberRecipeInput input, World world) {
-        if(world.isClient()) {
+        if (world.isClient()) {
             return false;
         }
-
         return inputItem.test(input.getStackInSlot(0));
     }
 
@@ -60,14 +58,9 @@ public record GrowthChamberRecipe(Ingredient inputItem, ItemStack output) implem
     public static class Serializer implements RecipeSerializer<GrowthChamberRecipe> {
         public static final MapCodec<GrowthChamberRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
                 Ingredient.DISALLOW_EMPTY_CODEC.fieldOf("ingredient").forGetter(GrowthChamberRecipe::inputItem),
-                ItemStack.CODEC.fieldOf("result").forGetter(GrowthChamberRecipe::output)
+                ItemStack.CODEC.fieldOf("result").forGetter(GrowthChamberRecipe::output),
+                Codec.INT.fieldOf("duration").forGetter(GrowthChamberRecipe::duration)
         ).apply(inst, GrowthChamberRecipe::new));
-
-        public static final PacketCodec<RegistryByteBuf, GrowthChamberRecipe> STREAM_CODEC =
-                PacketCodec.tuple(
-                        Ingredient.PACKET_CODEC, GrowthChamberRecipe::inputItem,
-                        ItemStack.PACKET_CODEC, GrowthChamberRecipe::output,
-                        GrowthChamberRecipe::new);
 
         @Override
         public MapCodec<GrowthChamberRecipe> codec() {
@@ -76,7 +69,24 @@ public record GrowthChamberRecipe(Ingredient inputItem, ItemStack output) implem
 
         @Override
         public PacketCodec<RegistryByteBuf, GrowthChamberRecipe> packetCodec() {
-            return STREAM_CODEC;
+            return new PacketCodec<>() {
+                @Override
+                public GrowthChamberRecipe decode(RegistryByteBuf buf) {
+                    // Deserialize the recipe from the buffer
+                    Ingredient inputItem = Ingredient.PACKET_CODEC.decode(buf);
+                    ItemStack output = ItemStack.PACKET_CODEC.decode(buf);
+                    int duration = buf.readVarInt(); // Read the duration as a VarInt
+                    return new GrowthChamberRecipe(inputItem, output, duration);
+                }
+
+                @Override
+                public void encode(RegistryByteBuf buf, GrowthChamberRecipe recipe) {
+                    // Serialize the recipe to the buffer
+                    Ingredient.PACKET_CODEC.encode(buf, recipe.inputItem());
+                    ItemStack.PACKET_CODEC.encode(buf, recipe.output());
+                    buf.writeVarInt(recipe.duration()); // Write the duration as a VarInt
+                }
+            };
         }
     }
 }
