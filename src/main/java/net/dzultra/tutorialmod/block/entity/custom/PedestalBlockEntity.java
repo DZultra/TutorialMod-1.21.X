@@ -82,13 +82,6 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
         Inventories.readNbt(nbt, inventory, registryLookup);
     }
 
-//    public void syncedInventoryModification(Consumer<DefaultedList<ItemStack>> inventoryConsumer) {
-//        inventoryConsumer.accept(this.getItems());
-//        if (this.getWorld() instanceof ServerWorld serverWorld) {
-//            serverWorld.getChunkManager().markForUpdate(this.getPos());
-//        }
-//    }
-
     // GUI
 
     @Override

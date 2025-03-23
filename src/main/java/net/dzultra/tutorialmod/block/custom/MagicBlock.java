@@ -1,6 +1,5 @@
 package net.dzultra.tutorialmod.block.custom;
 
-import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.util.ModTags;
 import net.minecraft.block.Block;

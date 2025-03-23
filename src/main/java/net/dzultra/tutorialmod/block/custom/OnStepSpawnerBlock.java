@@ -1,6 +1,5 @@
 package net.dzultra.tutorialmod.block.custom;
 
-import net.dzultra.tutorialmod.TutorialMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;

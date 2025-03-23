@@ -1,11 +1,8 @@
 package net.dzultra.tutorialmod.item;
 
-import net.dzultra.tutorialmod.enchantment.ModEnchantments;
-import net.dzultra.tutorialmod.potion.ModPotions;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.block.ModBlocks;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
@@ -85,7 +82,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PILLAR_CREATOR_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_LAMP);
                         entries.add(ModBlocks.ON_STEP_SPAWNER_BLOCK);
-                        entries.add(ModBlocks.TARGETER_BLOCK);
                         entries.add(ModBlocks.ON_SHOOT_DELETE_BLOCK);
 
                     }).build());

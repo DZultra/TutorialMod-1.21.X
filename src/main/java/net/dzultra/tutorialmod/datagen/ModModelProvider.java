@@ -33,7 +33,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PILLAR_CREATOR_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ON_STEP_SPAWNER_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.ON_SHOOT_DELETE_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.TARGETER_BLOCK);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GROWTH_CHAMBER);
 
 

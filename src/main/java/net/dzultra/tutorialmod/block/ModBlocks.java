@@ -126,9 +126,6 @@ public class ModBlocks {
     public static final Block ON_SHOOT_DELETE_BLOCK = registerBlock("on_shoot_delete_block",
             new OnShootDeleteBlock(AbstractBlock.Settings.create().strength(5f)));
 
-    public static final Block TARGETER_BLOCK = registerBlock("targeter_block",
-            new TargeterBlock(AbstractBlock.Settings.create().strength(5f)));
-
     private static Block registerBlockWithoutBlockItem(String name, Block block) {
         return Registry.register(Registries.BLOCK, Identifier.of(TutorialMod.MOD_ID, name), block);
     }

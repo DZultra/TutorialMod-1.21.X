@@ -1,7 +1,6 @@
 package net.dzultra.tutorialmod;
 
 import net.dzultra.tutorialmod.datagen.*;
-import net.dzultra.tutorialmod.enchantment.ModEnchantmentEffects;
 import net.dzultra.tutorialmod.enchantment.ModEnchantments;
 import net.dzultra.tutorialmod.trim.ModTrimMaterials;
 import net.dzultra.tutorialmod.trim.ModTrimPatterns;

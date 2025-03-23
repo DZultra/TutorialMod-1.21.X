@@ -1,7 +1,6 @@
 package net.dzultra.tutorialmod.block.entity.renderer;
 
 import net.dzultra.tutorialmod.block.entity.custom.PedestalBlockEntity;
-import net.dzultra.tutorialmod.particle.ModParticles;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.LightmapTextureManager;
 import net.minecraft.client.render.OverlayTexture;
