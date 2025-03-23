@@ -12,6 +12,7 @@ import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.networking.ModPayloads;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.potion.ModPotions;
+import net.dzultra.tutorialmod.recipe.ModRecipes;
 import net.dzultra.tutorialmod.screen.ModScreenHandlers;
 import net.dzultra.tutorialmod.sound.ModSounds;
 import net.dzultra.tutorialmod.util.*;
@@ -52,5 +53,6 @@ public class TutorialMod implements ModInitializer {
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
 		ModPayloads.registerModPayloads();
+		ModRecipes.registerRecipes();
 	}
 }
