@@ -1,5 +1,6 @@
 package net.dzultra.tutorialmod.screen.custom;
 
+import net.dzultra.tutorialmod.block.entity.custom.PedestalBlockEntity;
 import net.dzultra.tutorialmod.screen.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,18 +9,21 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.math.BlockPos;
 
 public class PedestalScreenHandler extends ScreenHandler {
     private final Inventory inventory;
+    private final PedestalBlockEntity blockEntity; // Add this field
 
     public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, BlockPos pos) {
-        this(syncId, playerInventory, playerInventory.player.getWorld().getBlockEntity(pos));
+        this(syncId, playerInventory, (PedestalBlockEntity) playerInventory.player.getWorld().getBlockEntity(pos));
     }
 
-    public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity) {
+    public PedestalScreenHandler(int syncId, PlayerInventory playerInventory, PedestalBlockEntity blockEntity) {
         super(ModScreenHandlers.PEDESTAL_SCREEN_HANDLER, syncId);
-        this.inventory = ((Inventory) blockEntity);
+        this.inventory = blockEntity;
+        this.blockEntity = blockEntity; // Store the BlockEntity
 
         this.addSlot(new Slot(inventory, 0, 80, 35) {
             @Override
@@ -33,7 +37,17 @@ public class PedestalScreenHandler extends ScreenHandler {
     }
 
     @Override
-    public ItemStack quickMove(PlayerEntity player, int invSlot) { // This Method handles the Shift Movements of Items - No need to understand it just works duh
+    public void onSlotClick(int slotIndex, int button, SlotActionType actionType, PlayerEntity player) {
+        super.onSlotClick(slotIndex, button, actionType, player);
+
+        // Sync the inventory after a slot click
+        if (!player.getWorld().isClient() && blockEntity != null) {
+            blockEntity.syncInventory();
+        }
+    }
+
+    @Override
+    public ItemStack quickMove(PlayerEntity player, int invSlot) {
         ItemStack newStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(invSlot);
         if (slot != null && slot.hasStack()) {
@@ -59,6 +73,10 @@ public class PedestalScreenHandler extends ScreenHandler {
     @Override
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);
+    }
+
+    public BlockEntity getBlockEntity() {
+        return this.blockEntity;
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {

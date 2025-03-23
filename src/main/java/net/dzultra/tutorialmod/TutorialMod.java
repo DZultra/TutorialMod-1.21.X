@@ -9,6 +9,7 @@ import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.custom.MantisEntity;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
+import net.dzultra.tutorialmod.networking.ModPayloads;
 import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.potion.ModPotions;
 import net.dzultra.tutorialmod.screen.ModScreenHandlers;
@@ -50,5 +51,6 @@ public class TutorialMod implements ModInitializer {
 		ModLootTableModifiers.modifyLootTables();
 		ModBlockEntities.registerBlockEntities();
 		ModScreenHandlers.registerScreenHandlers();
+		ModPayloads.registerModPayloads();
 	}
 }

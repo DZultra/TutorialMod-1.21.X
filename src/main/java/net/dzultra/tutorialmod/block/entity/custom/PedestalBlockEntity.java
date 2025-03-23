@@ -1,12 +1,11 @@
 package net.dzultra.tutorialmod.block.entity.custom;
 
-import net.dzultra.tutorialmod.TutorialMod;
+import net.dzultra.tutorialmod.block.custom.PedestalBlock;
 import net.dzultra.tutorialmod.block.entity.ImplementedInventory;
 import net.dzultra.tutorialmod.block.entity.ModBlockEntities;
-import net.dzultra.tutorialmod.particle.ModParticles;
 import net.dzultra.tutorialmod.screen.custom.PedestalScreenHandler;
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,7 +29,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.Consumer;
 
 public class PedestalBlockEntity extends BlockEntity implements ImplementedInventory, ExtendedScreenHandlerFactory<BlockPos> {
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(1, ItemStack.EMPTY);
@@ -75,7 +73,6 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
-        //TutorialMod.LOGGER.info("Inventory: {}", this.getItems());
         Inventories.writeNbt(nbt, inventory, registryLookup);
     }
 
@@ -83,17 +80,14 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
         Inventories.readNbt(nbt, inventory, registryLookup);
-        //TutorialMod.LOGGER.info("nbt read by BE: {}", nbt);
-        //TutorialMod.LOGGER.info("inventory after read: " + inventory);
     }
 
-    public void syncedInventoryModification(Consumer<DefaultedList<ItemStack>> inventoryConsumer) {
-        inventoryConsumer.accept(this.getItems());
-        TutorialMod.LOGGER.info("syncedInventoryModification");
-        if (this.getWorld() instanceof ServerWorld serverWorld) {
-            serverWorld.getChunkManager().markForUpdate(this.getPos());
-        }
-    }
+//    public void syncedInventoryModification(Consumer<DefaultedList<ItemStack>> inventoryConsumer) {
+//        inventoryConsumer.accept(this.getItems());
+//        if (this.getWorld() instanceof ServerWorld serverWorld) {
+//            serverWorld.getChunkManager().markForUpdate(this.getPos());
+//        }
+//    }
 
     // GUI
 
@@ -122,6 +116,22 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
         return false;
     }
 
+    public void closeGuiForAllPlayers() {
+        if (this.world != null && !this.world.isClient) {
+            for (ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) this.world, this.pos)) {
+                if (player.currentScreenHandler instanceof PedestalScreenHandler screenHandler && screenHandler.getBlockEntity() == this) {
+                    player.closeHandledScreen();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void markRemoved() {
+        super.markRemoved();
+        this.closeGuiForAllPlayers();
+    }
+
     // Client Server Sync
     @Nullable
     @Override
@@ -132,5 +142,11 @@ public class PedestalBlockEntity extends BlockEntity implements ImplementedInven
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
+    }
+
+    public void syncInventory() {
+        if (this.world != null && !this.world.isClient) {
+            PedestalBlock.sendSyncPacket(this.world, this.pos, this.inventory);
+        }
     }
 }
