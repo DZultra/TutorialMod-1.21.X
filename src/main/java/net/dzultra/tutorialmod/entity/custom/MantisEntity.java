@@ -1,6 +1,7 @@
 package net.dzultra.tutorialmod.entity.custom;
 
 import net.dzultra.tutorialmod.entity.ModEntities;
+import net.dzultra.tutorialmod.entity.ai.MantisAttackGoal;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.AnimationState;
@@ -35,15 +36,19 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class MantisEntity extends AnimalEntity {
+    private static final TrackedData<Boolean> ATTACKING = DataTracker.registerData(MantisEntity.class, TrackedDataHandlerRegistry.BOOLEAN); // Blockstate just for Entity
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    public final AnimationState attackAnimationState = new AnimationState();
+    public int attackAnimationTimeout = 0;
 
     private static final TrackedData<Integer> DATA_ID_TYPE_VARIANT =
             DataTracker.registerData(MantisEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     private final ServerBossBar bossBar = new ServerBossBar(Text.literal("Our Menacing Mantis"),
             BossBar.Color.GREEN, BossBar.Style.NOTCHED_10);
-
 
     public MantisEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -52,15 +57,19 @@ public class MantisEntity extends AnimalEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-
         this.goalSelector.add(1, new AnimalMateGoal(this, 1.15D));
-        this.goalSelector.add(2, new TemptGoal(this, 1.25D, Ingredient.ofItems(ModItems.CAULIFLOWER), false));
 
-        this.goalSelector.add(3, new FollowParentGoal(this, 1.1D));
+        this.goalSelector.add(2, new MantisAttackGoal(this, 1D, true));
+        this.goalSelector.add(2, new WanderNearTargetGoal(this, 0.9, 32.0F));
 
-        this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(5, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
-        this.goalSelector.add(6, new LookAroundGoal(this));
+        this.goalSelector.add(3, new TemptGoal(this, 1.25D, Ingredient.ofItems(ModItems.CAULIFLOWER), false));
+        this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
+
+        this.goalSelector.add(5, new WanderAroundGoal(this, 1D));
+        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 4.0F));
+        this.goalSelector.add(7, new LookAroundGoal(this));
+
+        this.targetSelector.add(1, new RevengeGoal(this)); // Who to attack?
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -77,6 +86,17 @@ public class MantisEntity extends AnimalEntity {
             this.idleAnimationState.start(this.age);
         } else {
             --this.idleAnimationTimeout;
+        }
+
+        if(this.isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 20;
+            attackAnimationState.start(this.age);
+        } else {
+            this.attackAnimationTimeout--;
+        }
+
+        if(!this.isAttacking()) {
+            attackAnimationState.stop();
         }
     }
 
@@ -103,11 +123,21 @@ public class MantisEntity extends AnimalEntity {
         return baby;
     }
 
+    public void setAttacking(boolean attacking) {
+        this.dataTracker.set(ATTACKING, attacking);
+    }
+
+    @Override
+    public boolean isAttacking() {
+        return this.dataTracker.get(ATTACKING);
+    }
+
     /* VARIANT */
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
         builder.add(DATA_ID_TYPE_VARIANT, 0);
+        builder.add(ATTACKING, false); // Attacking nth to do with Variant
     }
 
     public MantisVariant getVariant() {

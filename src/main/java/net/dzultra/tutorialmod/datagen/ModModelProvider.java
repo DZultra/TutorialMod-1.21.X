@@ -3,6 +3,7 @@ package net.dzultra.tutorialmod.datagen;
 import net.dzultra.tutorialmod.block.custom.CauliflowerCropBlock;
 import net.dzultra.tutorialmod.block.custom.HoneyBerryBushBlock;
 import net.dzultra.tutorialmod.block.custom.PinkGarnetLampBlock;
+import net.dzultra.tutorialmod.fluid.ModFluids;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.dzultra.tutorialmod.block.ModBlocks;
@@ -89,6 +90,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.PINK_GARNET_HAMMER, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.HONEY_JAR, Models.GENERATED);
+        itemModelGenerator.register(ModFluids.ACID_BUCKET, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.LAUNCHER_STAFF, Models.GENERATED);
         itemModelGenerator.register(ModItems.BLOCKUP_MOVER, Models.GENERATED);

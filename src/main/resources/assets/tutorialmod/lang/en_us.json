@@ -27,6 +27,8 @@
   "item.tutorialmod.mantis_spawn_egg": "Mantis Spawn Egg",
   "item.tutorialmod.tomahawk": "Tomahawk",
   "item.tutorialmod.spectre_staff": "Spectre Staff",
+  "item.tutorialmod.acid_bucket": "Acid Bucket",
+
 
   "item.minecraft.potion.effect.slimey_potion": "Potion of Slimey",
   "item.minecraft.splash_potion.effect.slimey_potion": "Splash Potion of Slimey",
@@ -77,6 +79,8 @@
   "block.tutorialmod.driftwood_sapling": "Driftwood Sapling",
   "block.tutorialmod.chair": "Chair",
   "block.tutorialmod.pedestal": "Pedestal",
+  "block.tutorialmod.acid": "Acid",
+  "block.tutorialmod.flowing_acid": "Acid",
 
   "itemgroup.tutorialmod.pink_garnet_items": "Pink Garnet Items",
   "itemgroup.tutorialmod.pink_garnet_blocks": "Pink Garnet Blocks",
@@ -99,5 +103,6 @@
   "entity.tutorialmod.tomahawk": "Tomahawk",
 
   "entity.minecraft.villager.kaupenger": "Kaupenger",
+
   "block.tutorialmod.growth_chamber": "Growth Chamber"
 }

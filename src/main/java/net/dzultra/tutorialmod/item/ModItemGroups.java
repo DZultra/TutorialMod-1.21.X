@@ -1,5 +1,6 @@
 package net.dzultra.tutorialmod.item;
 
+import net.dzultra.tutorialmod.fluid.ModFluids;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.dzultra.tutorialmod.TutorialMod;
 import net.dzultra.tutorialmod.block.ModBlocks;
@@ -43,6 +44,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SPECTRE_STAFF);
                         entries.add(ModItems.LAUNCHER_STAFF);
                         entries.add(ModItems.BLOCKUP_MOVER);
+                        entries.add(ModFluids.ACID_BUCKET);
                     }).build());
 
     public static final ItemGroup PINK_GARNET_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,
@@ -83,7 +85,6 @@ public class ModItemGroups {
                         entries.add(ModBlocks.PINK_GARNET_LAMP);
                         entries.add(ModBlocks.ON_STEP_SPAWNER_BLOCK);
                         entries.add(ModBlocks.ON_SHOOT_DELETE_BLOCK);
-
                     }).build());
 
 

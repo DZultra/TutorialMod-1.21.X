@@ -1,11 +1,13 @@
 package net.dzultra.tutorialmod.datagen;
 
+import net.dzultra.tutorialmod.fluid.ModFluids;
 import net.dzultra.tutorialmod.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.dzultra.tutorialmod.block.ModBlocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.FluidTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -28,6 +30,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.PILLAR_CREATOR_BLOCK)
                 .add(ModBlocks.ON_SHOOT_DELETE_BLOCK)
                 .add(ModBlocks.ON_STEP_SPAWNER_BLOCK);
+
+
 
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);

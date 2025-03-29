@@ -1,4 +1,4 @@
-// 1.21	2025-03-23T14:59:39.1422729	Tutorial Mod/Model Definitions
+// 1.21.1	2025-03-29T19:00:02.9157472	Tutorial Mod/Model Definitions
 d07d9c39d26911876be7b596eca7527632b20be2 assets\tutorialmod\models\item\pink_garnet_horse_armor.json
 75e5b55e50c1534b829f5a052542c160ae5ed12d assets\tutorialmod\models\item\pink_garnet_slab.json
 93315526f85f2922c4e6e345c498fe6f4287fd86 assets\tutorialmod\blockstates\pink_garnet_fence_gate.json
@@ -141,6 +141,7 @@ c9cc7ab7c299fce033da47ee15dfa7a259a4e0fb assets\tutorialmod\models\block\pink_ga
 1023f2bbf8c2893f71cea98a9e1df001b4d9123b assets\tutorialmod\blockstates\driftwood_sapling.json
 77311d4d4fb80d5e7cec169a342df8464ad213b7 assets\tutorialmod\models\block\pink_garnet_door_bottom_left.json
 263f68fdc41ce270ce454589abe864111975cce8 assets\tutorialmod\models\block\stripped_driftwood_wood.json
+213279b4230a6057a9dffffba601b5ebc77eeffe assets\tutorialmod\models\item\acid_bucket.json
 e64dbf78056524e8ddd24b2b5ae8e50cb2575437 assets\tutorialmod\models\item\pink_garnet_helmet_amethyst_trim.json
 d4efcb54a447dd4dfcad20f524e8b69c9582ed7b assets\tutorialmod\blockstates\launch_block.json
 51a99d4458d7b49c2a918e10e878fbc471500d5d assets\tutorialmod\models\item\pink_garnet_chestplate_iron_trim.json

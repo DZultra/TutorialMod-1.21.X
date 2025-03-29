@@ -22,14 +22,17 @@
 		],
 		"client": [
 			"net.dzultra.tutorialmod.TutorialModClient"
+		],
+		"rei_client": [
+			"net.dzultra.tutorialmod.compat.TutorialModREIClient"
 		]
 	},
 	"mixins": [
 		"tutorialmod.mixins.json"
 	],
 	"depends": {
-		"fabricloader": ">=0.16.9",
-		"minecraft": "~1.21",
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric-api": "*",
 		"fabric-key-binding-api-v1": "*"

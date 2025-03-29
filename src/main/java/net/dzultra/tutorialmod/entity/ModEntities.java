@@ -14,7 +14,7 @@ public class ModEntities {
     public static final EntityType<MantisEntity> MANTIS = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(TutorialMod.MOD_ID, "mantis"),
             EntityType.Builder.create(MantisEntity::new, SpawnGroup.CREATURE)
-                    .dimensions(1f, 2.5f).build());
+                    .dimensions(2f, 2.5f).maxTrackingRange(10).build());
 
     public static final EntityType<TomahawkProjectileEntity> TOMAHAWK = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(TutorialMod.MOD_ID, "tomahawk"),

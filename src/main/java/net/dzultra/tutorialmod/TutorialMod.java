@@ -7,6 +7,7 @@ import net.dzultra.tutorialmod.effect.ModEffects;
 import net.dzultra.tutorialmod.enchantment.ModEnchantmentEffects;
 import net.dzultra.tutorialmod.entity.ModEntities;
 import net.dzultra.tutorialmod.entity.custom.MantisEntity;
+import net.dzultra.tutorialmod.fluid.ModFluids;
 import net.dzultra.tutorialmod.item.ModItemGroups;
 import net.dzultra.tutorialmod.item.ModItems;
 import net.dzultra.tutorialmod.networking.ModPayloads;
@@ -54,5 +55,6 @@ public class TutorialMod implements ModInitializer {
 		ModScreenHandlers.registerScreenHandlers();
 		ModPayloads.registerModPayloads();
 		ModRecipes.registerRecipes();
+		ModFluids.registerModFluids();
 	}
 }
